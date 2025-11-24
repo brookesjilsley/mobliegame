@@ -1,0 +1,1576 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;ABI 6TH FORM: THE GAME&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>:root {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--bg-color: #101015;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--ui-bg: #ffffff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--ui-border: #404040;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--text-color: #000000;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--accent: #f0db4f;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--danger: #ff4444;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--success: #44ff44;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #050505;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Press Start 2P', cursive;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 100vh;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100vw;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>user-select: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-user-select: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>touch-action: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>#game-wrapper {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>#screen-area {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex: 1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #111;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 2px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>#game-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>aspect-ratio: 4/3;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 100vh;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--bg-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid #333;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 0 20px rgba(0,0,0,0.5);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>outline: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>canvas {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>image-rendering: pixelated;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>#mobile-controls {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-height: 220px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #222;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-top: 4px solid #444;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: space-between;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-sizing: border-box;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 1000;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>touch-action: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding-bottom: env(safe-area-inset-bottom);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>@media (orientation: landscape) and (max-height: 500px) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>#mobile-controls {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>bottom: 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>background: transparent;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>pointer-events: none;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>min-height: 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>padding-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.dpad, .action-btn-container {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>pointer-events: auto;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>background: rgba(0,0,0,0.5);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>border-radius: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>padding: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.dpad {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: 60px 60px 60px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>grid-template-rows: 60px 60px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 5px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>touch-action: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.dpad-btn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 60px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 60px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #444;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 4px solid #222;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #aaa;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>user-select: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-user-select: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 0 #111;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>touch-action: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.dpad-btn.active {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #666;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(4px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 0 0 #111;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>#btn-up { grid-column: 2; grid-row: 1; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#btn-left { grid-column: 1; grid-row: 2; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#btn-down { grid-column: 2; grid-row: 2; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#btn-right { grid-column: 3; grid-row: 2; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.action-btn-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#btn-action {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 80px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 80px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #d82020;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 4px solid #900;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 6px 0 #500;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Press Start 2P', cursive;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>touch-action: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>user-select: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-user-select: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#btn-action.active {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(6px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 0 0 #500;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>#intro-screen {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top:0; left:0; width:100%; height:100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #000;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 100;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.glitch-title {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #44ff44;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-shadow: 4px 4px #000;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: glitch 1s infinite;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.glitch-title::before, .glitch-title::after {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>content: "ABI 6TH FORM";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 0; left: 0; width: 100%; height: 100%; background: #000;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.glitch-title::before {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 2px; text-shadow: -2px 0 #ff00c1; clip: rect(44px, 450px, 56px, 0);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: glitch-anim-1 5s infinite linear alternate-reverse;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.glitch-title::after {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: -2px; text-shadow: -2px 0 #00fff9; clip: rect(44px, 450px, 56px, 0);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: glitch-anim-2 5s infinite linear alternate-reverse;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes glitch-anim-1 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0% { clip: rect(30px, 9999px, 10px, 0); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>20% { clip: rect(80px, 9999px, 90px, 0); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>40% { clip: rect(10px, 9999px, 50px, 0); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>60% { clip: rect(40px, 9999px, 20px, 0); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>80% { clip: rect(70px, 9999px, 90px, 0); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>100% { clip: rect(20px, 9999px, 60px, 0); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes glitch-anim-2 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0% { clip: rect(10px, 9999px, 30px, 0); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>20% { clip: rect(50px, 9999px, 20px, 0); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>40% { clip: rect(90px, 9999px, 70px, 0); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>60% { clip: rect(20px, 9999px, 40px, 0); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>80% { clip: rect(60px, 9999px, 10px, 0); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>100% { clip: rect(80px, 9999px, 90px, 0); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.subtitle { font-size: 10px; color: #ccc; margin-bottom: 20px; letter-spacing: 2px; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.mission-box { border: 2px solid #44ff44; padding: 10px; background: rgba(0, 50, 0, 0.8); margin-bottom: 20px; width: 80%; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.press-start { font-size: 14px; color: #f0db4f; animation: blinker 0.8s linear infinite; cursor: pointer; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes blinker { 50% { opacity: 0; } }</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>#focus-overlay {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top:0; left:0; width:100%; height:100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(0,0,0,0.9);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 200;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #4f4;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>touch-action: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#dialogue-box {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute; display: none; bottom: 10px; left: 10px; right: 10px; height: 100px; z-index: 10;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px; border: 4px double #000; background-color: #fff; border-radius: 4px; line-height: 1.6; font-size: 12px; color: black;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#dialogue-name { color: #d00; margin-bottom: 5px; text-transform: uppercase; font-size: 12px; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#room-name {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute; top: 20px; left: 20px; color: white; background: rgba(0,0,0,0.5); padding: 5px 10px; border: 2px solid white; display: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#scanlines {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute; top: 0; left: 0; width: 100%; height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-size: 100% 4px; pointer-events: none; z-index: 999; opacity: 0.3;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.logo-box {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 4px solid #fff; padding: 15px 20px; background: #000; margin-bottom: 40px; box-shadow: 6px 6px 0px #444;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex; flex-direction: column; align-items: center; transform: scale(1.2);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.logo-jbr { font-size: 40px; color: #f0db4f; text-shadow: 4px 4px 0px #d82020; line-height: 1; font-weight: bold; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.logo-games { font-size: 12px; color: #44ff44; letter-spacing: 8px; margin-top: 5px; border-top: 2px solid #333; padding-top: 5px; width: 100%; text-align: center; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1">&lt;div id="game-wrapper"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="screen-area"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="game-container" tabindex="0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;canvas id="gameCanvas" width="800" height="600"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="scanlines"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="room-name"&gt;COMMON ROOM&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="focus-overlay"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="logo-box"&gt;&lt;div class="logo-jbr"&gt;JBR&lt;/div&gt;&lt;div class="logo-games"&gt;GAMES&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="blink" style="color:#f0db4f"&gt;Tap to Start&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="intro-screen"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="glitch-title"&gt;ABI 6TH FORM&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="subtitle"&gt;THE GAME&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="mission-box"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p style="color:#ff4444; margin-bottom:10px;"&gt;ALERT: BUG RELEASE&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p style="font-size: 8px; line-height: 1.5;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>The Main Glitch has stolen the JCQ Exam and AI guidance.&lt;br&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>You need to recover it so you can spread good practice.&lt;br&gt;&lt;br&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>CONTROLS:&lt;br&gt;Use Buttons Below</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="press-start"&gt;TAP 'A' BUTTON&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="dialogue-box"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="dialogue-name"&gt;System&lt;/div&gt;&lt;div id="dialogue-text"&gt;...&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style="font-size: 10px; text-align: right; margin-top: 10px; opacity: 0.7;"&gt;[A]&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="mobile-controls"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="control-group dpad"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="dpad-btn" id="btn-up"&gt;▲&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="dpad-btn" id="btn-left"&gt;◀&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="dpad-btn" id="btn-down"&gt;▼&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="dpad-btn" id="btn-right"&gt;▶&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="control-group action-btn-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="btn-action"&gt;A&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">const canvas = document.getElementById('gameCanvas');</p>
+<p class="p1">const ctx = canvas.getContext('2d');</p>
+<p class="p2"><br></p>
+<p class="p1">// --- GLOBAL CONSTANTS ---</p>
+<p class="p1">const TILE_SIZE = 40;</p>
+<p class="p1">const COLS = 20;</p>
+<p class="p1">const ROWS = 15;</p>
+<p class="p1">const COLORS = {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>floor: '#222', wall: '#444',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>mediaFloor: '#203020', libraryFloor: '#202040', examFloor: '#302020',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>astroFloor: '#38761d'</p>
+<p class="p1">};</p>
+<p class="p2"><br></p>
+<p class="p1">// --- PIXEL ART SPRITE SYSTEM ---</p>
+<p class="p1">const PALETTE = {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'.': null, 'x': '#000000', 's': '#ffccaa', 'w': '#ffffff', 'r': '#d82020',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'b': '#2040d8', 'g': '#44aa44', 'y': '#ffee00', 'h': '#663300',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'c': '#888888', 'p': '#aa00aa', 'm': '#00aa00', 'd': '#222222',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'D': '#664400', 'T': '#8b4513', 'C': '#666666', 'L': '#228b22', 'O': '#ff9900'</p>
+<p class="p1">};</p>
+<p class="p1">const SPRITE_DATA = {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>player: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xppppppx.....","..xppppppppx....", ".xppwwwwwwppx...", ".xppwwwwwwppx...", ".xppppppppppx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>grant: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhsxwwxshx....", "..xhsssssshx....", "....xxxxxx......", "...xrrwwrrx.....","..xrrwwwwrrx....", ".xrrwwwwwwrrx...", ".xrrwwwwwwrrx...", ".xrrrrrrrrrrx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>brookes: ["....xxxxxx......", "...xbbbbbbx.....", "..xbbbbbbbbx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhshhhshhx....", "....xxxxxx......", "...xggggggx.....","..xggggggggx....", ".xggccccccggx...", ".xggccccccggx...", ".xggggggggggx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>botwright: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xccccccx.....","..xccwwwwccx....", ".xccwwrrwwccx...", ".xccwwrrwwccx...", ".xccccccccccx...","..xddddddddx....", "..xddddddddx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>mcmahon: ["....xxxxxx......", "...xyyyyyyx.....", "..xyyyyyyyyx....", "..xyssxxssyx....","..xys.xx.syx....", "..xyssssssyx....", "....xxxxxx......", "...xppppppx.....","..xppppppppx....", ".xppwwwwwwppx...", ".xppwwwwwwppx...", ".xppppppppppx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>oneill: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xbbbbbbx.....","..xbbbbbbbbx....", ".xbbwwwwwwbbx...", ".xbbwwyywwbbx...", ".xbbbbbbbbbbx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>oneill_strict: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xrrrrrrx.....","..xrrrrrrrrx....", ".xrrwwwwwwrrx...", ".xrrwwwwwwrrx...", ".xrrrrrrrrrrx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>julie: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xwwwwwwx.....","..xwwwwwwwwx....", ".xwwwwwwwwwwx...", ".xwwwwwwwwwwx...", ".xwwwwwwwwwwx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>deacon: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xddddddx.....","..xddddddddx....", ".xddddwwddddx...", ".xddddwwddddx...", ".xddddddddddx...","..xddddddddx....", "..xddddddddx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>jones: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xTTTTTTx.....","..xTTTTTTTTx....", ".xTTTTTTTTTTx...", ".xTTwwwwwwTTx...", ".xTTTTTTTTTTx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>russell: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xwwwwwwx.....","..xwwwwwwwwx....", ".xwwwwwwwwwwx...", ".xwwbbwwbbwwx...", ".xwwwwwwwwwwx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>mckeown: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhsxwwxshx....", "..xhsssssshx....", "....xxxxxx......", "...xppppppx.....","..xppppppppx....", ".xppwwwwwwppx...", ".xppwwwwwwppx...", ".xppppppppppx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>clinton: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xddddddx.....","..xddddddddx....", ".xddddddddddx...", ".xddwwwwwdddx...", ".xddddddddddx...","..xddddddddx....", "..xddddddddx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>mcdonald: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xyyyyyyx.....","..xyyyyyyyyx....", ".xyywwwwwwyyx...", ".xyywwwwwwyyx...", ".xyyyyyyyyyyx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>lakin: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xddddddx.....","..xddddddddx....", ".xddwwwwwwddx...", ".xddwwwwwwddx...", ".xddddddddddx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>hemmings: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xDDDDDDx.....","..xDDDDDDDDx....", ".xDDwwwwwwDDx...", ".xDDwwwwwwDDx...", ".xDDDDDDDDDDx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>pearson: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xppppppx.....","..xppppppppx....", ".xppwwwwwwppx...", ".xppwwwwwwppx...", ".xppppppppppx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>patel: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xOOOOOOx.....","..xOOOOOOOOx....", ".xOOwwwwwwOOx...", ".xOOwwwwwwOOx...", ".xOOOOOOOOOOx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>herron: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xyyyyyyx.....","..xyyyyyyyyx....", ".xyywwwwwwyyx...", ".xyywwwwwwyyx...", ".xyyyyyyyyyyx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>rose: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xrrrrrrx.....","..xrrrrrrrrx....", ".xrrwwwwwwrrx...", ".xrrwwwwwwrrx...", ".xrrrrrrrrrrx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>blair: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xCCCCCCx.....","..xCCCCCCCCx....", ".xCCwwwwwwCCx...", ".xCCwwwwwwCCx...", ".xCCCCCCCCCCx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>student: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xbbbbbbx.....","..xbbbbbbbbx....", ".xbbwwwwwwbbx...", ".xbbwwwwwwbbx...", ".xbbbbbbbbbbx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>student_kneeling: ["................", "................", "....xxxxxx......", "...xhhhhhhx.....","..xhhhhhhhhx....", "..xhsssssshx....", "..xhsssssshx....", "..xhsssssshx....","....xxxxxx......", "...xbbbbbbx.....", "..xbbbbbbbbx....", ".xbbwwwwwwbbx...","..xbbwwwwwwbbx..", "..xbbbbbbbbbbx..", "...xccccccccx...", "...xccccccccx..."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ball: ["................", "................", "................", "................","................", "................", "................", "................","......xxxx......", "....xxwwwwxx....", "...xwwxwwxwwx...","...xwxxxxxxwx...", "...xwwxwwxwwx...", "....xxwwwwxx....", "......xxxx......", "................"],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>computer: ["................", "................", "...xxxxxxxxxx...", "...x.bbbbbb.x...","...x.bbbbbb.x...", "...x.bbbbbb.x...", "...xxxxxxxxxx...", "......xxxx......","...xxxxxxxxxx...", "...xxxxxxxxxx...", "................", "................","................", "................", "................", "................"],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>glitch: ["....mmmmmm......", "...mm.mm.mm.....", "..mmmmmmmmmm....", "..m.m.mm.m.m....","..mmmmmmmmmm....", "..m.mmmmmm.m....", "....mmmmmm......", "...mxmxmxmx.....","..mxmxmxmxmx....", ".xmxmxmxmxmxm...", ".mxmxmxmxmxmx...", ".xmxmxmxmxmxm...","..xmxmxmxmx.....", "..mxmxmxmxm.....", "...m......m.....", "...m......m....."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>bug: ["................", "................", "................", "................","......mm........", "....mmmmmm......", "...mmxmmxmm.....", "...mmmmmmmm.....","....mmmmmm......", "....m....m......", "....m....m......", "................","................", "................", "................", "................"],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>door: ["xxxxx......xxxxx", "xDDDx......xDDDx", "xDDDx......xDDDx", "xDDDx......xDDDx","xDDDx......xDDDx", "xDDDx......xDDDx", "xDDDx......xDDDx", "xDDDx......xDDDx","xDDDx......xDDDx", "xDDDx......xDDDx", "xDDDx......xDDDx", "xDDDx......xDDDx","xDDDx......xDDDx", "xDDDx......xDDDx", "xDDDx......xDDDx", "xDDDx......xDDDx"],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>chair: ["................", "................", "................", "................","......xxxx......", "......xOOx......", "......xOOx......", "......xOOx......","......xOOx......", "....xxxOOxxx....", "...xOOOOOOOOx...", "...xOOOOOOOOx...","...xOOOOOOOOx...", "...xxxxxxxxxx...", "...x.x....x.x...", "...x.x....x.x..."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>table: ["................", "................", "................", "................","................", "................", "................", "................",".xxxxxxxxxxxxxx.", ".xTTTTTTTTTTTTx.", ".xTTTTTTTTTTTTx.", ".xTTTTTTTTTTTTx.",".xTTTTTTTTTTTTx.", ".xxxxxxxxxxxxxx.", ".xx..........xx.", ".xx..........xx."],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>plant: ["................", "......LLLL......", "....LLLLLLLL....", "...LLLLLLLLLL...","..LLLLLLLLLLLL..", "..LLLLLLLLLLLL..", "..LLLLLLLLLLLL..", "...LLLLLLLLLL...","....LLLLLLLL....", "......LLLL......", ".......xx.......", "......xDDx......","......xDDx......", "......xDDx......", "......xDDx......", "......xxxx......"],</p>
+<p class="p1"><span class="Apple-converted-space">    </span>alert: ["................", ".......OO.......", "......OOOO......", "......OOOO......","......OOOO......", "......OOOO......", ".......OO.......", ".......OO.......",".......OO.......", "................", ".......OO.......", "......OOOO......",".......OO.......", "................", "................", "................"]</p>
+<p class="p1">};</p>
+<p class="p1">function drawSprite(ctx, key, x, y, size, facingRight = true, bob = 0, opacity = 1.0) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const data = SPRITE_DATA[key];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!data) return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const pixelSize = size / 16;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const bobOffset = Math.sin(bob) * 2;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.globalAlpha = opacity;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>for (let r = 0; r &lt; 16; r++) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>for (let c = 0; c &lt; 16; c++) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let char = data[r][c];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (char !== '.') {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>ctx.fillStyle = PALETTE[char];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let drawX = facingRight ? x + (15 - c) * pixelSize : x + c * pixelSize;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let drawY = y + r * pixelSize + bobOffset;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>ctx.fillRect(drawX, drawY, pixelSize, pixelSize);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.globalAlpha = 1.0;</p>
+<p class="p1">}</p>
+<p class="p1">function wrapText(context, text, x, y, maxWidth, lineHeight) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!text) return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const words = text.split(' ');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let line = '';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>for(let n = 0; n &lt; words.length; n++) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const testLine = line + words[n] + ' ';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const metrics = context.measureText(testLine);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (metrics.width &gt; maxWidth &amp;&amp; n &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>context.fillText(line, x, y);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>line = words[n] + ' ';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>y += lineHeight;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>else line = testLine;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>context.fillText(line, x, y);</p>
+<p class="p1">}</p>
+<p class="p1">// --- AUDIO SYSTEM ---</p>
+<p class="p1">let audioCtx, bgmOscillators = [], isMuted = false, currentSong = 'NONE';<span class="Apple-converted-space"> </span></p>
+<p class="p1">let battleInit = false, battleLead, battleBass, battleKick, battleNoise, battleLeadSeq, battleBassSeq, battleDrumSeq;</p>
+<p class="p1">let townInit = false, townSynth, townBass, townMelodySeq, townBassSeq;</p>
+<p class="p1">let chapelInit = false, chapelSynth, chapelMelodySeq;</p>
+<p class="p1">let victoryMusicInit = false, victoryMusicSynth, victoryMusicBass, victoryMelodySeq, victoryBassSeq;</p>
+<p class="p1">let enemyDownInit = false, downNoise, downHit;</p>
+<p class="p1">let encounterInit = false, encounterSynth;</p>
+<p class="p1">let victoryInit = false, victorySynth;</p>
+<p class="p2"><br></p>
+<p class="p1">function initVictoryFanfare() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (victoryInit) return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>victorySynth = new Tone.Synth({oscillator:{type:"triangle"},envelope:{attack:0.01,decay:0.1,sustain:0.3,release:0.2}}).toDestination();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>victorySynth.volume.value = -8;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>victoryInit = true;</p>
+<p class="p1">}</p>
+<p class="p1">function playVictoryFanfare() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (Tone.context.state !== 'running') return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>initVictoryFanfare();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const now = Tone.now();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const melody = [{note:"C5",time:0,duration:"8n"},{note:"E5",time:0.15,duration:"8n"},{note:"G5",time:0.3,duration:"8n"},{note:"C6",time:0.45,duration:"4n"},{note:"G5",time:0.75,duration:"16n"},{note:"C6",time:0.85,duration:"4n"}];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>melody.forEach(({note, time, duration}) =&gt; victorySynth.triggerAttackRelease(note, duration, now + time));</p>
+<p class="p1">}</p>
+<p class="p1">function initEncounterSfx() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (encounterInit) return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>encounterSynth = new Tone.Synth({oscillator:{type:"square"},envelope:{attack:0.001,decay:0.1,sustain:0.3,release:0.1}}).toDestination();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>encounterSynth.volume.value = -8;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>encounterInit = true;</p>
+<p class="p1">}</p>
+<p class="p1">function playEncounterSfx() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (Tone.context.state !== 'running') return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>initEncounterSfx();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const now = Tone.now();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const siren = [{note:"E5",time:0},{note:"C5",time:0.15},{note:"E5",time:0.3},{note:"C5",time:0.45},{note:"E5",time:0.6},{note:"C5",time:0.75},{note:"E5",time:0.9},{note:"C5",time:1.05},{note:"G5",time:1.2},{note:"C6",time:1.35}];</p>
+<p class="p1"><span class="Apple-converted-space">  </span>siren.forEach(({note, time}) =&gt; encounterSynth.triggerAttackRelease(note, "8n", now + time));</p>
+<p class="p1">}</p>
+<p class="p1">function initEnemyDownSfx() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (enemyDownInit) return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>downNoise = new Tone.NoiseSynth({noise:{type:"white"},envelope:{attack:0.001,decay:0.45,sustain:0}}).toDestination(); downNoise.volume.value = -8;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>downHit = new Tone.Synth({oscillator:{type:"square"},envelope:{attack:0.001,decay:0.2,sustain:0,release:0.1}}).toDestination(); downHit.volume.value = -6;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>enemyDownInit = true;</p>
+<p class="p1">}</p>
+<p class="p1">function playEnemyDownSfx() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (Tone.context.state !== 'running') return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>initEnemyDownSfx();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const now = Tone.now();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>downNoise.triggerAttackRelease("4n", now);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>["C3", "G2", "C2"].forEach((n, i) =&gt; downHit.triggerAttackRelease(n, "16n", now + 0.15 + i*0.08));</p>
+<p class="p1"><span class="Apple-converted-space">  </span>downHit.triggerAttackRelease("C1", "8n", now + 0.45);</p>
+<p class="p1">}</p>
+<p class="p1">async function initAudio() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>await Tone.start();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>playMusic('ROAM');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} catch(e) { console.log("Audio init failed", e); }</p>
+<p class="p1">}</p>
+<p class="p1">function initTownMusic() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (townInit) return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Use PolySynth to prevent envelope interruption errors</p>
+<p class="p1"><span class="Apple-converted-space">  </span>townSynth = new Tone.PolySynth(Tone.Synth, {oscillator:{type:"triangle"},envelope:{attack:0.02,decay:0.1,sustain:0.3,release:0.5}}).toDestination();<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>townSynth.volume.value = -10;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>townBass = new Tone.PolySynth(Tone.Synth, {oscillator:{type:"square"},envelope:{attack:0.05,decay:0.2,sustain:0.5,release:0.5}}).toDestination();<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>townBass.volume.value = -8;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>townMelodySeq = new Tone.Sequence((t, n) =&gt; { if (n) townSynth.triggerAttackRelease(n, "8n", t); }, ["C5", null, "E5", "G5", "A5", "G5", "E5", "C5", "D5", null, "F5", "A5", "G5", "F5", "D5", "B4"], "8n");</p>
+<p class="p1"><span class="Apple-converted-space">  </span>townBassSeq = new Tone.Sequence((t, n) =&gt; { if (n) townBass.triggerAttackRelease(n, "8n", t); }, ["C3", null, "C3", null, "F3", null, "F3", null, "G3", null, "G3", null, "C3", null, "C3", null], "4n");</p>
+<p class="p1"><span class="Apple-converted-space">  </span>townMelodySeq.loop = true; townBassSeq.loop = true; townInit = true;</p>
+<p class="p1">}</p>
+<p class="p1">function initChapelMusic() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (chapelInit) return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>chapelSynth = new Tone.PolySynth(Tone.Synth, {oscillator:{type:"sine"},envelope:{attack:0.5,decay:1,sustain:0.8,release:1}}).toDestination(); chapelSynth.volume.value = -12;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>chapelMelodySeq = new Tone.Sequence((t, notes) =&gt; { if (notes) chapelSynth.triggerAttackRelease(notes, "2n", t); }, [["C4", "E4", "G4"], null, ["F4", "A4", "C5"], null, ["G4", "B4", "D5"], null, ["C4", "E4", "G4"], null], "2n");</p>
+<p class="p1"><span class="Apple-converted-space">    </span>chapelMelodySeq.loop = true; chapelInit = true;</p>
+<p class="p1">}</p>
+<p class="p1">function initVictoryMusic() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (victoryMusicInit) return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Use PolySynth</p>
+<p class="p1"><span class="Apple-converted-space">    </span>victoryMusicSynth = new Tone.PolySynth(Tone.Synth, {oscillator:{type:"triangle"},envelope:{attack:0.01,decay:0.1,sustain:0.4,release:0.3}}).toDestination();<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>victoryMusicSynth.volume.value = -10;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>victoryMusicBass = new Tone.PolySynth(Tone.Synth, {oscillator:{type:"square"},envelope:{attack:0.05,decay:0.2,sustain:0.5,release:0.5}}).toDestination();<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>victoryMusicBass.volume.value = -8;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>victoryMelodySeq = new Tone.Sequence((t, n) =&gt; { if (n) victoryMusicSynth.triggerAttackRelease(n, "8n", t); }, ["C5", "E5", "G5", "C6", "G5", "E5", "C5", "E5", "D5", "F5", "A5", "D6", "A5", "F5", "D5", "F5", "E5", "G5", "C6", "E6", "C6", "G5", "E5", "G5", "C5", "E5", "G5", "C6", null, null, null, null], "8n");</p>
+<p class="p1"><span class="Apple-converted-space">    </span>victoryBassSeq = new Tone.Sequence((t, n) =&gt; { if (n) victoryMusicBass.triggerAttackRelease(n, "8n", t); }, ["C3", "C3", "C3", "C3", "F3", "F3", "F3", "F3", "G3", "G3", "G3", "G3", "C3", "C3", "C3", "C3"], "4n");</p>
+<p class="p1"><span class="Apple-converted-space">    </span>victoryMelodySeq.loop = true; victoryBassSeq.loop = true; victoryMusicInit = true;</p>
+<p class="p1">}</p>
+<p class="p1">function initBattleMusic() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (battleInit) return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Use PolySynth</p>
+<p class="p1"><span class="Apple-converted-space">  </span>battleLead = new Tone.PolySynth(Tone.Synth, {oscillator:{type:"square"},envelope:{attack:0.01,decay:0.1,sustain:0.3,release:0.2}}).toDestination();<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>battleLead.volume.value = -10;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>battleBass = new Tone.PolySynth(Tone.Synth, {oscillator:{type:"square"},envelope:{attack:0.01,decay:0.1,sustain:0.4,release:0.2}}).toDestination();<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">  </span>battleBass.volume.value = -8;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>battleKick = new Tone.MembraneSynth().toDestination(); battleKick.volume.value = -6;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>battleNoise = new Tone.NoiseSynth({noise:{type:"white"},envelope:{attack:0.001,decay:0.12,sustain:0}}).toDestination(); battleNoise.volume.value = -12;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>battleBassSeq = new Tone.Sequence((t, n) =&gt; { if (n) battleBass.triggerAttackRelease(n, "8n", t); }, ["C2", "C2", "C2", "C2", "Ab1", "Ab1", "Ab1", "Ab1", "Bb1", "Bb1", "Bb1", "Bb1", "G1", "G1", "G1", "G1"], "8n");</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const leadA = ["C5", null, "Eb5", null, "G5", null, "F5", null, "Eb5", null, "D5", null, "C5", null, null, null];</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const leadB = ["G5", null, "F5", null, "Eb5", null, "C5", null, "Bb4", null, "C5", null, "D5", null, null, null];</p>
+<p class="p1"><span class="Apple-converted-space">  </span>battleLeadSeq = new Tone.Sequence((t, n) =&gt; { if (n) battleLead.triggerAttackRelease(n, "16n", t); }, [...leadA,...leadA,...leadB,...leadA], "16n");</p>
+<p class="p1"><span class="Apple-converted-space">  </span>battleDrumSeq = new Tone.Sequence((t, h) =&gt; { if (h === "K") battleKick.triggerAttackRelease("C1", "16n", t); }, ["K", null, null, null, "K", null, null, null, "K", null, null, null, "K", null, null, null], "16n");</p>
+<p class="p1"><span class="Apple-converted-space">  </span>battleBassSeq.loop = true; battleLeadSeq.loop = true; battleDrumSeq.loop = true; battleInit = true;</p>
+<p class="p1">}</p>
+<p class="p1">function stopAllMusic() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (battleBassSeq) { battleBassSeq.dispose(); battleBassSeq = null; } if (battleLeadSeq) { battleLeadSeq.dispose(); battleLeadSeq = null; } if (battleDrumSeq) { battleDrumSeq.dispose(); battleDrumSeq = null; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (battleLead) { battleLead.dispose(); battleLead = null; } if (battleBass) { battleBass.dispose(); battleBass = null; } if (battleKick) { battleKick.dispose(); battleKick = null; } if (battleNoise) { battleNoise.dispose(); battleNoise = null; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>battleInit = false;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (townMelodySeq) { townMelodySeq.dispose(); townMelodySeq = null; } if (townBassSeq) { townBassSeq.dispose(); townBassSeq = null; } if (townSynth) { townSynth.dispose(); townSynth = null; } if (townBass) { townBass.dispose(); townBass = null; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>townInit = false;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (chapelMelodySeq) { chapelMelodySeq.dispose(); chapelMelodySeq = null; } if (chapelSynth) { chapelSynth.dispose(); chapelSynth = null; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>chapelInit = false;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (victoryMelodySeq) { victoryMelodySeq.dispose(); victoryMelodySeq = null; } if (victoryBassSeq) { victoryBassSeq.dispose(); victoryBassSeq = null; } if (victoryMusicSynth) { victoryMusicSynth.dispose(); victoryMusicSynth = null; } if (victoryMusicBass) { victoryMusicBass.dispose(); victoryMusicBass = null; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>victoryMusicInit = false;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>try { Tone.Transport.stop(); Tone.Transport.cancel(); Tone.Transport.position = 0; } catch(e) { console.log("Error stopping transport:", e); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>currentSong = 'NONE';</p>
+<p class="p1">}</p>
+<p class="p1">async function startBattleMusic() { if (Tone.context.state !== 'running') await Tone.start(); Tone.Transport.bpm.value = 150; initBattleMusic(); battleBassSeq.start(0); battleLeadSeq.start(0); battleDrumSeq.start(0); Tone.Transport.start(); }</p>
+<p class="p1">async function startTownMusic() { if (Tone.context.state !== 'running') await Tone.start(); Tone.Transport.bpm.value = 120; initTownMusic(); townMelodySeq.start(0); townBassSeq.start(0); Tone.Transport.start(); }</p>
+<p class="p1">async function startChapelMusic() { if (Tone.context.state !== 'running') await Tone.start(); Tone.Transport.bpm.value = 80; initChapelMusic(); chapelMelodySeq.start(0); Tone.Transport.start(); }</p>
+<p class="p1">async function startVictoryMusic() { if (Tone.context.state !== 'running') await Tone.start(); Tone.Transport.bpm.value = 140; initVictoryMusic(); victoryMelodySeq.start(0); victoryBassSeq.start(0); Tone.Transport.start(); }</p>
+<p class="p1">function playMusic(track) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (currentSong === track) return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>stopAllMusic(); currentSong = track;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (track === 'BATTLE') startBattleMusic(); else if (track === 'ROAM') startTownMusic(); else if (track === 'CHAPEL') startChapelMusic(); else if (track === 'WIN') startVictoryMusic();</p>
+<p class="p1">}</p>
+<p class="p1">function playSound(type) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (isMuted) return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if(Tone &amp;&amp; Tone.context.state === 'running') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const synth = new Tone.Synth().toDestination(); const noise = new Tone.NoiseSynth().toDestination();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (type === 'SELECT') synth.triggerAttackRelease("C6", "32n"); if (type === 'CORRECT') synth.triggerAttackRelease("E6", "16n");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (type === 'WRONG') { noise.noise.type = 'pink'; noise.triggerAttackRelease("8n"); } if (type === 'HIT') { noise.noise.type = 'white'; noise.triggerAttackRelease("16n"); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (type === 'ALERT') synth.triggerAttackRelease("C7", "32n");</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">}</p>
+<p class="p1">const MAP_LAYOUTS = {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'COMMON_ROOM': {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "COMMON ROOM (HUB)", color: '#333344',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>data: [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,5,0,0,0,0,0,4,3,3,4,0,0,0,0,0,0,0,5,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,4,3,4,0,0,0,0,0,0,0,4,3,4,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,4,3,3,4,0,0,4,3,3,4,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,4,3,4,0,0,0,0,0,0,0,4,3,4,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>npcs: [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'mcmahon_intro', name: 'Mrs McMahon', role: 'Teacher', spriteKey: 'mcmahon', color: '#5555ff', gridX: 10, gridY: 3, dialogue: ["Improper use of AI is sweeping Archbishop Ilsley.", "The bugs have locked Mrs Grant in her office with a Glitch.", "You need to help the school by destroying three bugs to unlock her office then fight the Glitch.", "Good Luck."] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'clinton', name: 'Mr Clinton', role: 'Head Teacher', spriteKey: 'clinton', color: '#333333', gridX: 5, gridY: 5, dialogue: ["I am Mr Clinton, the head teacher.", "We have some bugs."] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'oneill_strict_cr', name: 'Mrs O\'Neill', role: 'Head of Behaviour', spriteKey: 'oneill_strict', color: '#ff0000', gridX: 15, gridY: 8, dialogue: [], autoInteract: true, damage: 10, messages: ["You are being too loud!", "I told you to get to lesson!", "This isn't a doss house!"] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'brookes', name: 'Mr Brookes', role: 'Media &amp; Film', spriteKey: 'brookes', color: '#44aa44', gridX: 2, gridY: 5, dialogue: ["*SIGH* I told them we needed more AI and Media Literacy training...", "But would they listen... No!", "Anyways, you might want to avoid Ms O'Neill.", "If you need some health points, visit the canteen or chapel."] }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>minions: [],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>doors: [{ x: 9, y: 13, target: 'CORRIDOR', targetX: 9, targetY: 2 }, { x: 10, y: 13, target: 'CORRIDOR', targetX: 10, targetY: 2 }],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>crowd: []</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'CORRIDOR': {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "MAIN CORRIDOR", color: '#222222',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>data: [[1,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>npcs: [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'botwright', name: 'Mr Botwright', role: 'Tutor', spriteKey: 'botwright', color: '#5555ff', gridX: 12, gridY: 8, dialogue: ["Global Link offers amazing youth exchange programmes focused on global citizenship.", "We are looking at a structured learning experience in Peru!", "It is not just a holiday; it is about human rights and development."] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'oneill_strict', name: 'Mrs O\'Neill', role: 'Head of Behaviour', spriteKey: 'oneill_strict', color: '#ff0000', gridX: 5, gridY: 6, dialogue: [], autoInteract: true, damage: 10, messages: ["You are being too loud!", "I told you to get to lesson!", "This isn't a doss house!"] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'foley', name: 'Mr Foley', role: 'Teacher', spriteKey: 'clinton', color: '#00aaaa', gridX: 8, gridY: 4, dialogue: ["Come on now, walk with purpose, every minute matters!"] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'regan', name: 'Dr Regan', role: 'DofE Leader', spriteKey: 'botwright', color: '#556b2f', gridX: 16, gridY: 10, dialogue: ["Boots check! Map check! Have you logged into eDofE check?", "For volunteering, you could use AI to help a charity.", "It is great for drafting newsletters or planning fundraising events!"] }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>minions: [],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>doors: [{ x: 9, y: 0, target: 'COMMON_ROOM', targetX: 9, targetY: 12 }, { x: 10, y: 0, target: 'COMMON_ROOM', targetX: 10, targetY: 12 }, { x: 19, y: 3, target: 'CANTEEN', targetX: 2, targetY: 7 }, { x: 0, y: 5, target: 'CHAPEL', targetX: 18, targetY: 7 }, { x: 0, y: 9, target: 'MAIN_OFFICE', targetX: 18, targetY: 7 }, { x: 9, y: 13, target: 'CLASSROOM_HALL', targetX: 9, targetY: 1 }, { x: 10, y: 13, target: 'CLASSROOM_HALL', targetX: 10, targetY: 1 }],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>crowd: [{ gridX: 4, gridY: 3, spriteKey: 'student', facingRight: true }, { gridX: 16, gridY: 4, spriteKey: 'student', facingRight: false }, { gridX: 8, gridY: 10, spriteKey: 'student', facingRight: true }, { gridX: 14, gridY: 11, spriteKey: 'student', facingRight: false }, { gridX: 2, gridY: 7, spriteKey: 'student', facingRight: true }, { gridX: 18, gridY: 6, spriteKey: 'student', facingRight: false }]</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'MAIN_OFFICE': {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "MAIN OFFICE", color: '#333355',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>data: [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,4,4,4,4,4,0,0,3,3,3,3,3,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,3,3,3,3,3,0,0,5,5,0,1],[1,0,0,0,0,0,0,0,0,3,3,3,3,3,0,0,5,5,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>npcs: [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'pearson', name: 'Mrs Pearson', role: 'Office Manager', spriteKey: 'pearson', color: '#aa00aa', gridX: 2, gridY: 10, dialogue: ["Can't talk, sorting cover.", "But remember: AI often lacks local knowledge.", "If it sounds generic, check it!"] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'staff1', name: 'Office Staff', role: 'Admin', spriteKey: 'julie', color: '#888888', gridX: 4, gridY: 4, dialogue: ["Busy, busy, busy..."], static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'staff2', name: 'Office Staff', role: 'Admin', spriteKey: 'julie', color: '#888888', gridX: 12, gridY: 3, dialogue: ["Did you sign in?"], static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'blair', name: 'Mr Blair', role: 'Maths', spriteKey: 'blair', color: '#008080', gridX: 15, gridY: 5, dialogue: ["You should come to Maths Club.", "I am trying to devise a strategy to finally beat Mr Jackson at chess.", "Did you know AI mastered chess years ago? Deep Blue beat Kasparov in 1997!"] }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>minions: [{gridX: 10, gridY: 9, spriteKey: 'bug', active: true}],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>doors: [{ x: 19, y: 7, target: 'CORRIDOR', targetX: 1, targetY: 9 }],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>crowd: []</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'CANTEEN': {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "THE CANTEEN", color: '#302020',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>data: [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,3,3,3,3,0,0,3,3,3,3,0,0,3,3,3,3,0,0,1],[1,4,4,4,4,0,0,4,4,4,4,0,0,4,4,4,4,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,3,3,3,3,0,0,3,3,3,3,0,0,3,3,3,3,0,0,1],[1,4,4,4,4,0,0,4,4,4,4,0,0,4,4,4,4,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,6,6,6,6,6,6,6,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>npcs: [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'julie', name: 'Julie', role: 'Canteen Staff', spriteKey: 'julie', color: '#ffffff', gridX: 10, gridY: 11, dialogue: ["Hi love! Need a break?", "Here, have a hot meal. It's on the house."], heal: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'student_chicken', name: 'Student', role: 'Year 12', spriteKey: 'student', color: '#ddddff', gridX: 8, gridY: 10, dialogue: ["Do the bugs know it is Chicken Burger day?"] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'student_art', name: 'Student', role: 'Year 13', spriteKey: 'student', color: '#ddddff', gridX: 3, gridY: 4, dialogue: ["I am just completing my Art Competition entry."], static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'student_hungry', name: 'Student', role: 'Year 12', spriteKey: 'student', color: '#ddddff', gridX: 9, gridY: 4, dialogue: ["I am sooooooo hungry."], static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'mcdonald', name: 'Mr McDonald', role: 'Teacher', spriteKey: 'mcdonald', color: '#ffff00', gridX: 5, gridY: 8, dialogue: ["I am on duty. I hope the bugs do not mess with Bromcom today"] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'lakin', name: 'Mr Lakin', role: 'Teacher', spriteKey: 'lakin', color: '#8888ff', gridX: 15, gridY: 8, dialogue: ["The glitch best not break the laser cutter."] }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>minions: [],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>doors: [{ x: 0, y: 7, target: 'CORRIDOR', targetX: 18, targetY: 3 }, { x: 19, y: 7, target: 'ASTRO_TURF', targetX: 1, targetY: 7 }],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>crowd: [{ gridX: 2, gridY: 4, spriteKey: 'student', facingRight: true, static: true }, { gridX: 14, gridY: 4, spriteKey: 'student', facingRight: false, static: true }]</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'ASTRO_TURF': {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "ASTRO TURF", color: '#38761d',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>data: [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>npcs: [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'hemmings', name: 'Mr Hemmings', role: 'Teacher', spriteKey: 'hemmings', color: '#8b4513', gridX: 10, gridY: 13, dialogue: ["It is a bit nippy today", "Don't let AI write your code without understanding it", "Verify every fact.", "AI is a tool, not a replacement.", "Fancy a penalty shootout?", "Get 3 goals for a prize!"] }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>minions: [],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>doors: [{ x: 0, y: 7, target: 'CANTEEN', targetX: 18, targetY: 7 }],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>crowd: [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 5, gridY: 5, spriteKey: 'student', facingRight: true, moveChance: 0.1 },<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 15, gridY: 8, spriteKey: 'student', facingRight: false, moveChance: 0.1 },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 5, gridY: 9, spriteKey: 'student', facingRight: true, static: true },<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 15, gridY: 9, spriteKey: 'student', facingRight: false, static: true },<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>{<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>gridX: 5, gridY: 9, spriteKey: 'ball', facingRight: true,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>behavior: 'passing',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>targets: [{x: 5, y: 9}, {x: 15, y: 9}],<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>currentTarget: 1,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>pixelX: 5*40, pixelY: 9*40,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>waitTimer: 0</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>]</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'CHAPEL': {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "THE CHAPEL", color: '#202040',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>data: [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,4,4,4,4,0,0,0,0,0,4,4,4,4,0,0,0,1],[1,0,0,4,4,4,4,0,0,0,0,0,4,4,4,4,0,0,0,1],[1,0,0,4,4,4,4,0,0,0,0,0,4,4,4,4,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,4,4,4,4,0,0,0,0,0,4,4,4,4,0,0,0,1],[1,0,0,4,4,4,4,0,0,0,0,0,4,4,4,4,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>npcs: [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'deacon', name: 'Deacon Martin', role: 'Chaplain', spriteKey: 'deacon', color: '#aaaaaa', gridX: 9, gridY: 2, dialogue: ["Peace be with you.", "Let me heal your weary soul."], heal: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'student_praying_1', name: 'Student', role: 'Year 13', spriteKey: 'student_kneeling', color: '#ddddff', gridX: 12, gridY: 4, dialogue: ["Please let the bugs go away...", "Amen."], static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'student_praying_2', name: 'Student', role: 'Year 12', spriteKey: 'student_kneeling', color: '#ddddff', gridX: 6, gridY: 4, dialogue: ["I hope I pass my mocks...", "Please guide me."], static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'student_praying_3', name: 'Student', role: 'Year 13', spriteKey: 'student_kneeling', color: '#ddddff', gridX: 8, gridY: 10, dialogue: ["Quiet please, I am reflecting."], static: true }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>minions: [],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>doors: [{ x: 19, y: 7, target: 'CORRIDOR', targetX: 1, targetY: 5 }],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>crowd: []</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'CLASSROOM_HALL': {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "LOWER CORRIDOR", color: '#222222',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Added door (2) at the bottom center (9, 8)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>data: [[1,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[2,0,0,0,0,0,2,0,0,0,0,0,2,0,0,0,0,0,0,2],[1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1],[1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1],[1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,1,1],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>npcs: [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'oneill_strict_ch', name: 'Mrs O\'Neill', role: 'Head of Behaviour', spriteKey: 'oneill_strict', color: '#ff0000', gridX: 3, gridY: 3, dialogue: [], autoInteract: true, damage: 10, messages: ["You are being too loud!", "I told you to get to lesson!", "This isn't a doss house!"] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'patel', name: 'Miss Patel', role: 'Debate Club', spriteKey: 'patel', color: '#ff9900', gridX: 10, gridY: 3, dialogue: ["You should come to debate club.", "AI can be biased, so you need to think on your own.", "Debate club is a great place to do it."] }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>minions: [],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Added door to COMPUTER_SUITE</p>
+<p class="p1"><span class="Apple-converted-space">        </span>doors: [{ x: 9, y: 0, target: 'CORRIDOR', targetX: 9, targetY: 12 }, { x: 10, y: 0, target: 'CORRIDOR', targetX: 10, targetY: 12 }, { x: 0, y: 4, target: 'CLASSROOM_1', targetX: 18, targetY: 7 }, { x: 6, y: 4, target: 'CLASSROOM_2', targetX: 9, targetY: 13 }, { x: 12, y: 4, target: 'CLASSROOM_3', targetX: 9, targetY: 13 }, { x: 19, y: 4, target: 'OFFICE', targetX: 1, targetY: 7 }, { x: 9, y: 8, target: 'COMPUTER_SUITE', targetX: 9, targetY: 1 }, { x: 10, y: 8, target: 'COMPUTER_SUITE', targetX: 10, targetY: 1 }],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>crowd: []</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'COMPUTER_SUITE': {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "COMPUTER SUITE", color: '#202030',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 7 is the new Computer Tile</p>
+<p class="p1"><span class="Apple-converted-space">        </span>data: [[1,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,7,7,7,0,7,7,7,0,7,7,7,0,7,7,7,0,0,1],[1,0,4,4,4,0,4,4,4,0,4,4,4,0,4,4,4,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,7,7,7,0,7,7,7,0,7,7,7,0,7,7,7,0,0,1],[1,0,4,4,4,0,4,4,4,0,4,4,4,0,4,4,4,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,7,7,7,0,7,7,7,0,7,7,7,0,7,7,7,0,0,1],[1,0,4,4,4,0,4,4,4,0,4,4,4,0,4,4,4,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>npcs: [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'rose', name: 'Mrs Rose', role: 'IT Lead', spriteKey: 'rose', color: '#ff69b4', gridX: 2, gridY: 2, dialogue: ["Welcome to the Computer Suite!", "AI can generate code, but it cannot generate logic.", "Always debug AI output. It doesn't 'know' what it is writing!"] }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>minions: [{gridX: 9, gridY: 6, spriteKey: 'bug', active: true}],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>doors: [{ x: 9, y: 0, target: 'CLASSROOM_HALL', targetX: 9, targetY: 7 }, { x: 10, y: 0, target: 'CLASSROOM_HALL', targetX: 10, targetY: 7 }],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>crowd: [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Row 1</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 2, gridY: 4, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 3, gridY: 4, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 4, gridY: 4, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 6, gridY: 4, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 7, gridY: 4, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 8, gridY: 4, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 10, gridY: 4, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 11, gridY: 4, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 12, gridY: 4, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 14, gridY: 4, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 15, gridY: 4, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 16, gridY: 4, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Row 2</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 2, gridY: 8, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 3, gridY: 8, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 4, gridY: 8, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 6, gridY: 8, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 7, gridY: 8, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 8, gridY: 8, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 10, gridY: 8, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 11, gridY: 8, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 12, gridY: 8, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 14, gridY: 8, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 15, gridY: 8, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 16, gridY: 8, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Row 3</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 2, gridY: 12, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 3, gridY: 12, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 4, gridY: 12, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 6, gridY: 12, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 7, gridY: 12, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 8, gridY: 12, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 10, gridY: 12, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 11, gridY: 12, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 12, gridY: 12, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 14, gridY: 12, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 15, gridY: 12, spriteKey: 'student', facingRight: true, static: true },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gridX: 16, gridY: 12, spriteKey: 'student', facingRight: true, static: true }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>]</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'CLASSROOM_1': {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "CLASSROOM 1", color: '#252525',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>data: [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,3,3,0,3,3,0,3,3,0,3,3,0,0,0,0,0,0,0,1],[1,4,4,0,4,4,0,4,4,0,4,4,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,3,3,0,3,3,0,3,3,0,3,3,0,0,0,0,0,0,0,1],[1,4,4,0,4,4,0,4,4,0,4,4,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>npcs: [{ id: 'jones', name: 'Mr Jones', role: 'History', spriteKey: 'jones', color: '#aaffaa', gridX: 15, gridY: 2, dialogue: ["The Berlin and Belgium trip is simply the best experience!", "Use AI for research, but verify everything.", "We cannot have hallucinations when discussing World War 2."] }],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>minions: [{gridX:5,gridY:5,spriteKey:'bug',active:true}], doors: [{x:19,y:7,target:'CLASSROOM_HALL',targetX:1,targetY:4}],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>crowd: [{ gridX: 2, gridY: 4, spriteKey: 'student', facingRight: true, static: true }, { gridX: 5, gridY: 4, spriteKey: 'student', facingRight: true, static: true }, { gridX: 8, gridY: 10, spriteKey: 'student', facingRight: true, static: true }]</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'CLASSROOM_2': {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "CLASSROOM 2", color: '#252525',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>data: [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,3,3,0,3,3,0,3,3,0,3,3,0,0,0,0,0,0,0,1],[1,4,4,0,4,4,0,4,4,0,4,4,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,3,3,0,3,3,0,3,3,0,3,3,0,0,0,0,0,0,0,1],[1,4,4,0,4,4,0,4,4,0,4,4,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>npcs: [{ id: 'russell', name: 'Miss Russell', role: 'Science', spriteKey: 'russell', color: '#aaaaff', gridX: 2, gridY: 2, dialogue: ["Biology unlocks the secrets of life—it is truly the best subject!", "Ensure you verify all your data; AI cannot replace real experiments.", "On another note, Wicked is absolutely amazing. You must go see it!"] }],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>minions: [{gridX:10,gridY:8,spriteKey:'bug',active:true}], doors: [{x:9,y:13,target:'CLASSROOM_HALL',targetX:6,targetY:5}],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>crowd: [{ gridX: 4, gridY: 4, spriteKey: 'student', facingRight: true, static: true }, { gridX: 10, gridY: 4, spriteKey: 'student', facingRight: true, static: true }, { gridX: 2, gridY: 10, spriteKey: 'student', facingRight: true, static: true }]</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'CLASSROOM_3': {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "CLASSROOM 3", color: '#252525',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>data: [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,3,3,0,3,3,0,3,3,0,3,3,0,0,0,0,0,0,0,1],[1,4,4,0,4,4,0,4,4,0,4,4,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,3,3,0,3,3,0,3,3,0,3,3,0,0,0,0,0,0,0,1],[1,4,4,0,4,4,0,4,4,0,4,4,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>npcs: [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'mckeown', name: 'Mrs McKeown', role: 'English', spriteKey: 'mckeown', color: '#ffaaaa', gridX: 15, gridY: 2, dialogue: ["We are studying 'An Inspector Calls' today.", "Mr Birling would love AI...", "...because he could just sack people more easily!", "Make sure your work has your own human voice."] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'herron', name: 'Mrs Herron', role: 'English', spriteKey: 'herron', color: '#ffff00', gridX: 2, gridY: 2, dialogue: ["'I think of thee!' - Sonnet 29 by Elizabeth Barrett Browning.", "It is part of the Love and Relationships Cluster.", "AI cannot replicate the passion of 'wild vines' around a tree!"] }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>minions: [{gridX:14,gridY:5,spriteKey:'bug',active:true}], doors: [{x:9,y:13,target:'CLASSROOM_HALL',targetX:12,targetY:5}],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>crowd: [{ gridX: 1, gridY: 4, spriteKey: 'student', facingRight: true, static: true }, { gridX: 7, gridY: 4, spriteKey: 'student', facingRight: true, static: true }, { gridX: 5, gridY: 10, spriteKey: 'student', facingRight: true, static: true }]</p>
+<p class="p1"><span class="Apple-converted-space">    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'OFFICE': {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>name: "MRS GRANT'S OFFICE", color: '#301010',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>data: [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,5,0,3,0,3,0,3,0,0,0,3,0,3,0,3,0,5,1],[1,0,0,4,0,4,0,4,0,0,0,4,0,4,0,4,0,0,1],[1,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,4,0,4,0,4,0,0,0,4,0,4,0,4,0,0,1],[1,5,0,3,0,3,0,3,0,0,0,3,0,3,0,3,0,5,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>npcs: [{ id: 'grant_final', name: 'Mrs Grant', role: 'Head of Sixth Form', spriteKey: 'grant', color: '#ff5555', gridX: 16, gridY: 7, dialogue: ["The Main Glitch is right there!", "Defeat it to recover the JCQ Guidance data!"] }],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>minions: [],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>doors: [{ x: 0, y: 7, target: 'CLASSROOM_HALL', targetX: 18, targetY: 4 }],</p>
+<p class="p1"><span class="Apple-converted-space">        </span>boss: { active: true, gridX: 9, gridY: 5, spriteKey: 'glitch', hp: 100 },</p>
+<p class="p1"><span class="Apple-converted-space">        </span>crowd: []</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">};</p>
+<p class="p1">const STATE = { INTRO: 0, ROAM: 1, DIALOGUE: 2, BATTLE: 3, GAMEOVER: 4, WIN: 5, TRANSITION: 6, PENALTY: 7 };</p>
+<p class="p1">let currentState = STATE.INTRO;</p>
+<p class="p1">let frames = 0;</p>
+<p class="p1">let winTimer = 0;<span class="Apple-converted-space"> </span></p>
+<p class="p1">let transitionTimer = 0;<span class="Apple-converted-space"> </span></p>
+<p class="p1">let faintTimer = 0;<span class="Apple-converted-space"> </span></p>
+<p class="p1">let introCutsceneActive = false;</p>
+<p class="p1">let introCutsceneFinished = false;</p>
+<p class="p1">let officeCutsceneActive = false;<span class="Apple-converted-space"> </span></p>
+<p class="p1">let officeCutscenePlayed = false;<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p1">const player = {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>gridX: 10, gridY: 7, x: 400, y: 280, targetX: 400, targetY: 280, isMoving: false, facingRight: true, bobFrame: 0,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>hp: 100, maxHp: 100, auth: 100, maxAuth: 100, spriteKey: 'player', inventory: [], interactionCooldown: 0, autoInteractCooldown: 0, currentRoom: 'COMMON_ROOM'</p>
+<p class="p1">};</p>
+<p class="p1">let activeRoom = MAP_LAYOUTS['COMMON_ROOM'];</p>
+<p class="p1">let activeMap = activeRoom.data;</p>
+<p class="p1">let activeNPCs = activeRoom.npcs;</p>
+<p class="p1">let activeMinions = activeRoom.minions;</p>
+<p class="p1">let activeCrowd = activeRoom.crowd || [];</p>
+<p class="p1">let activeBoss = null;</p>
+<p class="p2"><br></p>
+<p class="p1">activeNPCs.forEach(n =&gt; { n.pixelX = n.gridX * TILE_SIZE; n.pixelY = n.gridY * TILE_SIZE; n.targetPixelX = n.pixelX; n.targetPixelY = n.pixelY; n.isMoving = false; });</p>
+<p class="p2"><br></p>
+<p class="p1">let battleState = 'MENU';</p>
+<p class="p1">let battleTurn = 'PLAYER';</p>
+<p class="p1">let activeBattleEnemy = {};</p>
+<p class="p1">let battleMenuIdx = 0;</p>
+<p class="p1">let battleMsg = "";</p>
+<p class="p1">let battleEffects = [];</p>
+<p class="p1">let battleShake = 0;</p>
+<p class="p1">let matrixRain = [];</p>
+<p class="p1">let currentQuestion = null;</p>
+<p class="p1">let selectedOptionIdx = 0;</p>
+<p class="p1">let pendingAction = '';<span class="Apple-converted-space"> </span></p>
+<p class="p1">let battleTargetIndex = -1; // Added to track which minion</p>
+<p class="p1">let pendingDamage = 0;</p>
+<p class="p2"><br></p>
+<p class="p1">// Penalty Shootout Global Vars</p>
+<p class="p1">let penaltyActive = false;</p>
+<p class="p1">let penaltyScore = 0;</p>
+<p class="p1">let penaltyShots = 0;</p>
+<p class="p1">let penaltyTargetX = 400;</p>
+<p class="p1">let penaltyTargetSpeed = 8;</p>
+<p class="p1">let penaltyGoalkeeperX = 400;</p>
+<p class="p1">let penaltyBallX = 400;</p>
+<p class="p1">let penaltyBallY = 500;</p>
+<p class="p1">let penaltyState = 'AIM'; // AIM, SHOOT, RESULT</p>
+<p class="p1">let penaltyMsg = "";</p>
+<p class="p2"><br></p>
+<p class="p1">const keys = { ArrowUp: false, ArrowDown: false, ArrowLeft: false, ArrowRight: false, " ": false };</p>
+<p class="p1">let keyProcessed = { ArrowUp: false, ArrowDown: false, ArrowLeft: false, ArrowRight: false, " ": false };</p>
+<p class="p2"><br></p>
+<p class="p1">window.addEventListener('keydown', e =&gt; { if(keys.hasOwnProperty(e.key) || e.key === " ") { keys[e.key] = true; } });</p>
+<p class="p1">window.addEventListener('keyup', e =&gt; { if(keys.hasOwnProperty(e.key) || e.key === " ") { keys[e.key] = false; keyProcessed[e.key] = false; } });</p>
+<p class="p2"><br></p>
+<p class="p1">// --- DIALOGUE FUNCTIONS ---</p>
+<p class="p1">let dialogueQueue = []; let dialogueSpeaker = "";</p>
+<p class="p1">function startDialogue(npc) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (player.interactionCooldown &gt; 0) return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>playSound('SELECT');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>dialogueQueue = [...npc.dialogue];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (npc.heal) dialogueQueue.push("[HP RESTORED]");</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>dialogueSpeaker = npc.name;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>currentState = STATE.DIALOGUE;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('dialogue-box').style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('dialogue-name').innerText = dialogueSpeaker;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('dialogue-text').innerText = dialogueQueue[0];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Change dialogue text color if Mrs Pearson</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (npc.id === 'pearson') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('dialogue-name').style.color = npc.color;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('dialogue-name').style.color = '#d00';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>player.interactionCooldown = 15;</p>
+<p class="p1">}</p>
+<p class="p1">function advanceDialogue() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>dialogueQueue.shift();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (dialogueQueue.length === 0) {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>currentState = STATE.ROAM;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('dialogue-box').style.display = 'none';<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>player.interactionCooldown = 20;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Check for Hemmings game trigger</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (dialogueSpeaker === "Mr Hemmings") {</p>
+<p class="p1"><span class="Apple-converted-space">             </span>initPenalty();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>else { document.getElementById('dialogue-text').innerText = dialogueQueue[0]; player.interactionCooldown = 15; }</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// --- PENALTY SHOOTOUT VARIABLES &amp; FUNCTIONS ---</p>
+<p class="p1">function initPenalty() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>currentState = STATE.PENALTY;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>penaltyScore = 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>penaltyShots = 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>penaltyState = 'AIM';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>penaltyMsg = "Take 5 shots! Goal: 3";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>penaltyTargetX = 400;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>penaltyTargetSpeed = 4; // Reduced from 8 to 4 (Slower Aim)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>penaltyGoalkeeperX = 400;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>penaltyBallX = 400;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>penaltyBallY = 500;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function updatePenalty() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (penaltyState === 'AIM') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>penaltyTargetX += penaltyTargetSpeed;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (penaltyTargetX &gt; 600 || penaltyTargetX &lt; 200) penaltyTargetSpeed *= -1;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Slower Goalie movement (0.03 instead of 0.05)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>penaltyGoalkeeperX = 400 + Math.sin(frames * 0.03) * 120;<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (keys[" "] &amp;&amp; !keyProcessed[" "]) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>keyProcessed[" "] = true;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>penaltyState = 'SHOOT';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>playSound('HIT');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else if (penaltyState === 'SHOOT') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>penaltyBallY -= 8; // Slower shot speed (was 15)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const dx = (penaltyTargetX - 400) * 0.05; // Adjusted angle calculation</p>
+<p class="p1"><span class="Apple-converted-space">        </span>penaltyBallX += dx;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (penaltyBallY &lt; 150) { // Reached goal line (150 is deeper in net)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Improved Collision:<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Goalie width is 80px, so center +/- 40px is a hit.<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Added slightly tighter hitbox (50) to feel fairer.</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (Math.abs(penaltyBallX - penaltyGoalkeeperX) &lt; 50) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>penaltyState = 'RESULT';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>penaltyMsg = "SAVED by the Bug!";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>playSound('WRONG');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (penaltyBallX &gt; 190 &amp;&amp; penaltyBallX &lt; 610) { // Hitting posts or inside</p>
+<p class="p1"><span class="Apple-converted-space">                </span>penaltyState = 'RESULT';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>penaltyScore++;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>penaltyMsg = "GOAL!";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>playSound('CORRECT');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>penaltyState = 'RESULT';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>penaltyMsg = "MISS!";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>playSound('WRONG');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>penaltyShots++;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else if (penaltyState === 'RESULT') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (keys[" "] &amp;&amp; !keyProcessed[" "]) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>keyProcessed[" "] = true;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (penaltyShots &lt; 5) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>penaltyState = 'AIM';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>penaltyBallX = 400;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>penaltyBallY = 500;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>penaltyMsg = `Score: ${penaltyScore}/${penaltyShots}`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// End Game</p>
+<p class="p1"><span class="Apple-converted-space">                </span>currentState = STATE.ROAM;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// CRITICAL FIX: Reset cooldown so dialogue can actually start</p>
+<p class="p1"><span class="Apple-converted-space">                </span>player.interactionCooldown = 0;<span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (penaltyScore &gt;= 3) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>player.hp = player.maxHp;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Name changed to 'Coach Hemmings' to prevent infinite game loop in advanceDialogue</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>startDialogue({ name: 'Coach Hemmings', role: 'Coach', dialogue: ["Well done!", `You scored ${penaltyScore}/5!`, "Here is your prize: A Stamina Boost!", "Your HP is fully restored!"], heal: true });</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>startDialogue({ name: 'Coach Hemmings', role: 'Coach', dialogue: ["Unlucky!!!", `Only ${penaltyScore}/5 goals.`, "Keep practicing!"] });</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function drawPenalty() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Draw Pitch</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillStyle = '#38761d';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillRect(0, 0, canvas.width, canvas.height);</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Draw Goal</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillStyle = '#fff';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillRect(190, 100, 420, 10); // Top bar</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillRect(190, 100, 10, 100); // Left post</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillRect(600, 100, 10, 100); // Right post</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Draw Net</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.strokeStyle = "rgba(255,255,255,0.5)";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.beginPath();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>for(let i=200; i&lt;=600; i+=20) { ctx.moveTo(i, 100); ctx.lineTo(i, 200); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.stroke();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Draw Goalie</p>
+<p class="p1"><span class="Apple-converted-space">    </span>drawSprite(ctx, 'bug', penaltyGoalkeeperX - 40, 150, 80, true);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Draw Player</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (penaltyState === 'AIM') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>drawSprite(ctx, 'player', 360, 500, 80, false);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Draw Ball</p>
+<p class="p1"><span class="Apple-converted-space">    </span>drawSprite(ctx, 'ball', penaltyBallX - 20, penaltyBallY - 20, 40, true);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Draw Target Reticle</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (penaltyState === 'AIM') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.strokeStyle = '#ff0000';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.lineWidth = 3;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.beginPath();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.arc(penaltyTargetX, 180, 20, 0, Math.PI*2);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.stroke();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.moveTo(penaltyTargetX - 25, 180); ctx.lineTo(penaltyTargetX + 25, 180);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.moveTo(penaltyTargetX, 155); ctx.lineTo(penaltyTargetX, 205);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.stroke();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// UI</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillStyle = '#000';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.font = '20px "Press Start 2P"';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillText(penaltyMsg, 400, 50);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.font = '14px "Press Start 2P"';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillText(`Shots: ${penaltyShots}/5<span class="Apple-converted-space">  </span>Score: ${penaltyScore}`, 400, 80);</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (penaltyState === 'RESULT') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillStyle = '#fff';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillText("Press [A] to Continue", 400, 550);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// --- MATRIX RAIN ---</p>
+<p class="p1">function initMatrixRain() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>matrixRain = [];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>for(let i=0; i&lt;50; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>matrixRain.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, speed: Math.random() * 5 + 2, chars: "101010 AI ERROR JCQ" });</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">}</p>
+<p class="p1">initMatrixRain();</p>
+<p class="p2"><br></p>
+<p class="p1">// --- QUESTIONS DATABASE ---</p>
+<p class="p1">const QUESTIONS = [</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ q: "According to JCQ, what must a school’s malpractice policy include?", options: ["Instructions for improving AI writing quality", "Rules for AI use in assessments", "A list of AI tools teachers recommend"], answer: 1 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ q: "What are teachers responsible for confirming?", options: ["That AI tools have been used efficiently", "That students enjoyed the task", "The authenticity of each student’s work"], answer: 2 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ q: "What must students do if they use AI in permitted coursework?", options: ["Paraphrase the AI output", "Reference the AI tool clearly", "Email the awarding body"], answer: 1 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ q: "When can students earn marks for content produced solely by AI?", options: ["Only if they reference it correctly", "Only if the teacher supervises the AI use", "Never—AI-generated content cannot earn marks"], answer: 2 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ q: "What is AI misuse according to the JCQ guidance?", options: ["Using AI to check your spelling", "Using AI to generate ideas only", "Taking AI-produced work as your own"], answer: 2 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ q: "What should teachers compare work against if they suspect AI misuse?", options: ["The student’s favourite writing style", "Previous work for differences in tone/quality", "The student’s mock exam results only"], answer: 1 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ q: "What should students do before signing the declaration on coursework?", options: ["Remove all references to AI", "Double-check all AI usage has been referenced", "Submit anonymously"], answer: 1 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ q: "If a student misuses AI, what is a possible consequence?", options: ["A warning with no grade impact", "Extra time on their next assessment", "They may lose marks or be disqualified"], answer: 2 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ q: "What is one indicator of AI-generated text?", options: ["Clear references", "Lack of local knowledge/wrong statements", "Use of British spelling"], answer: 1 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ q: "If AI misuse is found after a declaration form is signed, what happens?", options: ["Ask the student to redo the work", "Report it to the awarding body", "Remove the mark and move on"], answer: 1 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ q: "What is the safest way to interact with AI tools?", options: ["Share personal data to get better answers", "Avoid sharing sensitive information", "Use AI only on public computers"], answer: 1 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ q: "Why is it important to check AI outputs?", options: ["AI always provides verified facts", "AI often guesses/generates inaccurate content", "AI can only give answers written by experts"], answer: 1 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ q: "Which example demonstrates ethical AI use?", options: ["Using AI to impersonate someone online", "Using AI to support ideas but citing it", "Submitting AI-written work as your own"], answer: 1 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ q: "What is a responsible approach when using AI for decision-making?", options: ["Rely entirely on AI recommendations", "Treat AI suggestions critically and verify", "Ignore human judgment in favour of AI"], answer: 1 },</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{ q: "Why must AI-generated content be acknowledged in academic work?", options: ["To hide how much AI was used", "Because it helps boost the grade", "Transparency prevents plagiarism"], answer: 2 }</p>
+<p class="p1">];</p>
+<p class="p2"><br></p>
+<p class="p1">// --- MISSING BATTLE FUNCTIONS IMPLEMENTED HERE ---</p>
+<p class="p2"><br></p>
+<p class="p1">function startBattle(type, index) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>playEncounterSfx();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>battleTargetIndex = index;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Set Enemy Data</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (type === 'boss') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>activeBattleEnemy = { name: "MAIN GLITCH", hp: 100, maxHp: 100, lvl: 99, spriteKey: 'glitch', damage: 25 };</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>activeBattleEnemy = { name: "BUG", hp: 50, maxHp: 50, lvl: 5, spriteKey: 'bug', damage: 10 };</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Reset Battle State</p>
+<p class="p1"><span class="Apple-converted-space">    </span>battleState = 'MENU';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>battleTurn = 'PLAYER';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>battleMenuIdx = 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>battleMsg = "A wild glitch appeared!";</p>
+<p class="p1"><span class="Apple-converted-space">    </span>battleEffects = [];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>faintTimer = 0;<span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Transition Effect</p>
+<p class="p1"><span class="Apple-converted-space">    </span>currentState = STATE.TRANSITION;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>transitionTimer = 90; // 1.5 seconds transition</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function spawnProjectile(x1, y1, x2, y2, color) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>battleEffects.push({</p>
+<p class="p1"><span class="Apple-converted-space">        </span>type: 'projectile', x: x1, y: y1, targetX: x2, targetY: y2,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>speed: 15, color: color, active: true</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function updateBattle() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (battleShake &gt; 0) battleShake--;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Handle Projectiles</p>
+<p class="p1"><span class="Apple-converted-space">    </span>for (let i = battleEffects.length - 1; i &gt;= 0; i--) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let p = battleEffects[i];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (p.type === 'projectile' &amp;&amp; p.active) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const dx = p.targetX - p.x;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const dy = p.targetY - p.y;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const dist = Math.sqrt(dx*dx + dy*dy);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (dist &lt; p.speed) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>p.x = p.targetX;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>p.y = p.targetY;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>p.active = false; // Hit!</p>
+<p class="p1"><span class="Apple-converted-space">                </span>battleEffects.splice(i, 1);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Trigger Impact Logic based on who was shooting</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (battleState === 'PLAYER_ANIM') {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>activeBattleEnemy.hp -= pendingDamage;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>playSound('HIT');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>battleShake = 5;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (activeBattleEnemy.hp &lt;= 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>battleState = 'FAINT_ANIM';</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>faintTimer = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>stopAllMusic();</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>playEnemyDownSfx();</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>battleMsg = "";</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>battleState = 'ENEMY_TURN_START';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else if (battleState === 'ENEMY_ANIM') {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>player.hp -= activeBattleEnemy.damage;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>playSound('HIT');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>battleShake = 10;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>battleMsg = `${activeBattleEnemy.name} hits you! -${activeBattleEnemy.damage} HP`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>battleState = 'RESULT'; // Go to result screen to show damage</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>p.x += (dx / dist) * p.speed;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>p.y += (dy / dist) * p.speed;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (battleState === 'MENU') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (keys.ArrowUp &amp;&amp; !keyProcessed.ArrowUp) { battleMenuIdx = (battleMenuIdx - 1 + 3) % 3; keyProcessed.ArrowUp = true; playSound('SELECT'); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (keys.ArrowDown &amp;&amp; !keyProcessed.ArrowDown) { battleMenuIdx = (battleMenuIdx + 1) % 3; keyProcessed.ArrowDown = true; playSound('SELECT'); }</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (keys[" "] &amp;&amp; !keyProcessed[" "]) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>keyProcessed[" "] = true;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (battleMenuIdx === 0) { // QUESTION</p>
+<p class="p1"><span class="Apple-converted-space">                </span>currentQuestion = QUESTIONS[Math.floor(Math.random() * QUESTIONS.length)];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>selectedOptionIdx = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>battleState = 'QUESTION';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (battleMenuIdx === 1) { // GEN-AI (Risk Attack)</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>const hit = Math.random() &gt; 0.4; // 60% chance to hit</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>if (hit) {</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>pendingDamage = 35;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>battleMsg = `Gen-AI Generated Code! -${pendingDamage}`;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>spawnProjectile(140, 370, 520, 120, '#00ffff'); // Player shoots</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>battleState = 'PLAYER_ANIM';</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>const selfDmg = 15;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>player.hp -= selfDmg;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>battleMsg = `Gen-AI Hallucinated! You cited fake laws! -${selfDmg} HP`;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>playSound('WRONG');</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>battleState = 'RESULT';</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (battleMenuIdx === 2) { // RUN</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (activeBattleEnemy.spriteKey === 'glitch') {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>battleMsg = "You cannot run from the Main Glitch!";</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>battleState = 'RESULT';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentState = STATE.ROAM;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>playMusic('ROAM');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else if (battleState === 'QUESTION') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (keys.ArrowUp &amp;&amp; !keyProcessed.ArrowUp) { selectedOptionIdx = (selectedOptionIdx - 1 + 3) % 3; keyProcessed.ArrowUp = true; playSound('SELECT'); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (keys.ArrowDown &amp;&amp; !keyProcessed.ArrowDown) { selectedOptionIdx = (selectedOptionIdx + 1) % 3; keyProcessed.ArrowDown = true; playSound('SELECT'); }</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (keys[" "] &amp;&amp; !keyProcessed[" "]) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>keyProcessed[" "] = true;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (selectedOptionIdx === currentQuestion.answer) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>pendingDamage = 25;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>battleMsg = `Correct! Integrity Beam! -${pendingDamage}`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>playSound('CORRECT');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>spawnProjectile(140, 370, 520, 120, '#44ff44'); // Green beam</p>
+<p class="p1"><span class="Apple-converted-space">                </span>battleState = 'PLAYER_ANIM';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>battleMsg = "Wrong! The bug attacks you!";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>playSound('WRONG');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>battleState = 'ENEMY_TURN_START';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else if (battleState === 'ENEMY_TURN_START') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Small delay before enemy shoots</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setTimeout(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">             </span>spawnProjectile(520, 120, 140, 370, '#ff0000'); // Red glitch</p>
+<p class="p1"><span class="Apple-converted-space">             </span>battleState = 'ENEMY_ANIM';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}, 500);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>battleState = 'WAITING'; // Just wait for timeout</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else if (battleState === 'RESULT') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (keys[" "] &amp;&amp; !keyProcessed[" "]) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>keyProcessed[" "] = true;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (player.hp &lt;= 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>loseGame("Your academic integrity hit 0.");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>battleState = 'MENU';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else if (battleState === 'FAINT_ANIM') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>faintTimer++;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (faintTimer === 60) { // 1 second mark</p>
+<p class="p1"><span class="Apple-converted-space">            </span>playVictoryFanfare(); // 3. Fanfare</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (faintTimer === 180) { // 3 seconds mark</p>
+<p class="p1"><span class="Apple-converted-space">            </span>battleState = 'VICTORY_WAIT';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>battleMsg = "Enemy Defeated! Integrity Restored.";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>playMusic('WIN'); // 4. Win Music Loop</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else if (battleState === 'VICTORY_WAIT') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (keys[" "] &amp;&amp; !keyProcessed[" "]) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>keyProcessed[" "] = true;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (activeBattleEnemy.spriteKey === 'glitch') {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>currentState = STATE.WIN;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Keep music playing</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Remove Minion</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (battleTargetIndex &gt; -1) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>activeMinions[battleTargetIndex].active = false;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>currentState = STATE.ROAM;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>playMusic('ROAM');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function loseGame(reason) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>currentState = STATE.GAMEOVER;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>battleMsg = reason;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>stopAllMusic();</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// --- INPUT AND ROOM LOGIC ---</p>
+<p class="p1">function setupMobileControls() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const btnUp = document.getElementById('btn-up');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const btnDown = document.getElementById('btn-down');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const btnLeft = document.getElementById('btn-left');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const btnRight = document.getElementById('btn-right');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const btnAction = document.getElementById('btn-action');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const handleTouch = (key, pressed) =&gt; { if (pressed) { keys[key] = true; } else { keys[key] = false; keyProcessed[key] = false; } };</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const addBtnListener = (btn, key) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if(!btn) return;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const start = (e) =&gt; { e.preventDefault(); handleTouch(key, true); btn.classList.add('active'); };</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const end = (e) =&gt; { e.preventDefault(); handleTouch(key, false); btn.classList.remove('active'); };</p>
+<p class="p1"><span class="Apple-converted-space">        </span>btn.addEventListener('touchstart', start, {passive: false}); btn.addEventListener('touchend', end, {passive: false});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>btn.addEventListener('mousedown', start); btn.addEventListener('mouseup', end); btn.addEventListener('mouseleave', end);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>addBtnListener(btnUp, 'ArrowUp'); addBtnListener(btnDown, 'ArrowDown'); addBtnListener(btnLeft, 'ArrowLeft'); addBtnListener(btnRight, 'ArrowRight'); addBtnListener(btnAction, ' ');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const overlay = document.getElementById('focus-overlay');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if(overlay) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const startAudio = (e) =&gt; { e.preventDefault(); initAudio(); overlay.style.display='none'; document.getElementById('game-container').focus(); };</p>
+<p class="p1"><span class="Apple-converted-space">        </span>overlay.addEventListener('touchstart', startAudio, {passive: false}); overlay.addEventListener('click', startAudio);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">}</p>
+<p class="p1">setupMobileControls();</p>
+<p class="p2"><br></p>
+<p class="p1">function switchRoom(roomKey, startX, startY) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!MAP_LAYOUTS[roomKey]) { console.error("INVALID ROOM KEY:", roomKey); return false; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const previousRoom = player.currentRoom;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (roomKey === 'OFFICE') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const c1Cleared = MAP_LAYOUTS['CLASSROOM_1'].minions.every(m =&gt; !m.active);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const c2Cleared = MAP_LAYOUTS['CLASSROOM_2'].minions.every(m =&gt; !m.active);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const c3Cleared = MAP_LAYOUTS['CLASSROOM_3'].minions.every(m =&gt; !m.active);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!c1Cleared || !c2Cleared || !c3Cleared) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>playSound('ALERT');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const status = `C1: ${c1Cleared ? '✓' : ' ✗ '} | C2: ${c2Cleared ? '✓' : ' ✗ '} | C3: ${c3Cleared ? '✓' : ' ✗ '}`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>startDialogue({ name: 'SECURITY SYSTEM', role: 'LOCKDOWN', color: '#ff0000', dialogue: ["&gt;&gt;&gt; ACCESS DENIED &lt;&lt;&lt;", "You must clear the bugs in ALL 3 Classrooms first.", status], heal: false });</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return false;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!officeCutscenePlayed) { officeCutsceneActive = true; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>player.currentRoom = roomKey; activeRoom = MAP_LAYOUTS[roomKey]; activeMap = activeRoom.data; activeNPCs = activeRoom.npcs; activeMinions = activeRoom.minions; activeCrowd = activeRoom.crowd || []; activeBoss = activeRoom.boss || null;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const initEntity = (e) =&gt; { e.pixelX = e.gridX * TILE_SIZE; e.pixelY = e.gridY * TILE_SIZE; e.targetPixelX = e.pixelX; e.targetPixelY = e.pixelY; e.isMoving = false; };</p>
+<p class="p1"><span class="Apple-converted-space">    </span>activeCrowd.forEach(initEntity); activeNPCs.forEach(initEntity);</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>player.gridX = startX; player.gridY = startY; player.x = startX * TILE_SIZE; player.y = startY * TILE_SIZE; player.targetX = player.x; player.targetY = player.y;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('room-name').innerText = activeRoom.name; document.getElementById('room-name').style.display = 'block'; setTimeout(() =&gt; document.getElementById('room-name').style.display = 'none', 2000);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (roomKey === 'CHAPEL') playMusic('CHAPEL'); else if (previousRoom === 'CHAPEL') playMusic('ROAM');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return true;</p>
+<p class="p1">}</p>
+<p class="p1">function tryMove(dx, dy) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (player.isMoving) return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const nextX = player.gridX + dx; const nextY = player.gridY + dy;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (nextX &lt; 0 || nextX &gt;= COLS || nextY &lt; 0 || nextY &gt;= ROWS) return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const tile = activeMap[nextY][nextX];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (tile === 1 || (tile &gt;= 3 &amp;&amp; tile &lt;= 6)) return;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>for(let i=0; i&lt;activeMinions.length; i++) { let m = activeMinions[i]; if (m.active &amp;&amp; m.gridX === nextX &amp;&amp; m.gridY === nextY) { startBattle('minion', i); return; } }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (activeBoss &amp;&amp; activeBoss.active &amp;&amp; activeBoss.gridX === nextX &amp;&amp; activeBoss.gridY === nextY) { startBattle('boss', -1); return; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>for (let door of activeRoom.doors) { if (door.x === nextX &amp;&amp; door.y === nextY) { if(!switchRoom(door.target, door.targetX, door.targetY)) {} return; } }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>for(let npc of activeNPCs) { if (npc.gridX === nextX &amp;&amp; npc.gridY === nextY) return; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>player.gridX = nextX; player.gridY = nextY; player.targetX = nextX * TILE_SIZE; player.targetY = nextY * TILE_SIZE; player.isMoving = true; player.bobFrame = 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (dx &gt; 0) player.facingRight = true; if (dx &lt; 0) player.facingRight = false;</p>
+<p class="p1">}</p>
+<p class="p1">function update() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>frames++;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (currentState === STATE.INTRO) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (keys[" "] &amp;&amp; !keyProcessed[" "]) { keyProcessed[" "] = true; currentState = STATE.ROAM; player.interactionCooldown = 20; document.getElementById('intro-screen').style.display = 'none'; if (!introCutsceneFinished) introCutsceneActive = true; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (currentState === STATE.TRANSITION) { transitionTimer--; if (transitionTimer &lt;= 0) { currentState = STATE.BATTLE; setTimeout(() =&gt; { playMusic('BATTLE'); }, 100); } return; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (currentState === STATE.WIN) { winTimer++; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (currentState === STATE.ROAM) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (player.interactionCooldown &gt; 0) player.interactionCooldown--;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (player.autoInteractCooldown &gt; 0) player.autoInteractCooldown--;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const handleEntityMove = (p, isNpc) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (p.static) return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (p.behavior === 'passing') {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Custom Passing Logic</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!p.waitTimer) p.waitTimer = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (p.waitTimer &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>p.waitTimer--;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const target = p.targets[p.currentTarget];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const tx = target.x * TILE_SIZE;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const ty = target.y * TILE_SIZE;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const dx = tx - p.pixelX;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const dy = ty - p.pixelY;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const dist = Math.sqrt(dx*dx + dy*dy);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const speed = 3; // SLOWED DOWN BALL (Was 6)</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (dist &lt; speed) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>p.pixelX = tx;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>p.pixelY = ty;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>p.waitTimer = 60; // Wait 1 second at feet</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>p.currentTarget = (p.currentTarget + 1) % p.targets.length;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>p.pixelX += (dx / dist) * speed;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>p.pixelY += (dy / dist) * speed;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (p.isMoving) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const speed = 1; // SLOWED DOWN NPCS (Was 2)</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const dx = p.targetPixelX - p.pixelX;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const dy = p.targetPixelY - p.pixelY;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (Math.abs(dx) &lt;= speed &amp;&amp; Math.abs(dy) &lt;= speed) { p.pixelX = p.targetPixelX; p.pixelY = p.targetPixelY; p.isMoving = false; } else { p.pixelX += Math.sign(dx) * speed; p.pixelY += Math.sign(dy) * speed; }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Standard movement chance is 0.02 or use entity specific moveChance</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const chance = p.moveChance || ((isNpc &amp;&amp; p.spriteKey === 'oneill_strict') ? 0.03 : 0.02);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (Math.random() &lt; chance) {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const dir = Math.floor(Math.random() * 4); let dx = 0, dy = 0; if (dir===0) dy=-1; else if(dir===1) dy=1; else if(dir===2) dx=-1; else dx=1;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const nx = p.gridX + dx; const ny = p.gridY + dy;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (nx &gt;= 0 &amp;&amp; nx &lt; COLS &amp;&amp; ny &gt;= 0 &amp;&amp; ny &lt; ROWS) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>const t = activeMap[ny][nx];</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>if (t === 0 &amp;&amp; !(nx===player.gridX &amp;&amp; ny===player.gridY)) {</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>let hitNPC = activeNPCs.some(n =&gt; n.gridX === nx &amp;&amp; n.gridY === ny);</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>let hitCrowd = activeCrowd.some(c =&gt; c !== p &amp;&amp; c.gridX === nx &amp;&amp; c.gridY === ny);</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>if (!hitNPC &amp;&amp; !hitCrowd) { p.gridX = nx; p.gridY = ny; p.targetPixelX = nx * TILE_SIZE; p.targetPixelY = ny * TILE_SIZE; p.isMoving = true; p.facingRight = dx &gt; 0; }</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>activeCrowd.forEach(p =&gt; handleEntityMove(p, false));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>activeNPCs.forEach(n =&gt; {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (n.isMoving || n.spriteKey === 'oneill_strict') handleEntityMove(n, true);<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (introCutsceneActive) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!player.isMoving) { if (player.gridY &gt; 4) { tryMove(0, -1); } else { introCutsceneActive = false; introCutsceneFinished = true; player.facingRight = true; const npc = activeNPCs.find(n =&gt; n.id === 'mcmahon_intro'); if(npc) { player.interactionCooldown = 0; startDialogue(npc); } } }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else if (officeCutsceneActive) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const grant = activeNPCs.find(n =&gt; n.id === 'grant_final');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (grant) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const dist = Math.abs(grant.gridX - player.gridX);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (dist &gt; 2) { if (!grant.isMoving) { grant.gridX -= 1; grant.targetPixelX = grant.gridX * TILE_SIZE; grant.isMoving = true; grant.facingRight = false; } }<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>else if (!grant.isMoving) { officeCutsceneActive = false; officeCutscenePlayed = true; player.interactionCooldown = 0; startDialogue({ name: grant.name, role: grant.role, color: grant.color, dialogue: ["Thank you for unlocking the door.", "The bugs have been terrible.", "I know you will know the answers to defeat the glitch.", "I believe in you!"] }); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else { officeCutsceneActive = false; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else if (player.autoInteractCooldown === 0 &amp;&amp; !player.isMoving) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const adj = [{x: player.gridX, y: player.gridY - 1}, {x: player.gridX, y: player.gridY + 1}, {x: player.gridX - 1, y: player.gridY}, {x: player.gridX + 1, y: player.gridY}, {x: player.gridX, y: player.gridY}];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (let pos of adj) { for (let npc of activeNPCs) { if (npc.autoInteract &amp;&amp; npc.gridX === pos.x &amp;&amp; npc.gridY === pos.y) { const msg = npc.messages[Math.floor(Math.random() * npc.messages.length)]; player.hp -= npc.damage; playSound('ALERT'); if (player.hp &lt;= 0) { loseGame("Caught by Mrs O'Neill!"); return; } startDialogue({ name: npc.name, role: npc.role, color: npc.color, dialogue: [msg, `[-${npc.damage} HP]`] }); player.autoInteractCooldown = 180; break; } } }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (player.isMoving) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const speed = 2; // SLOWED DOWN PLAYER (Was 4)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const dx = player.targetX - player.x;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const dy = player.targetY - player.y;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (Math.abs(dx) &lt;= speed &amp;&amp; Math.abs(dy) &lt;= speed) { player.x = player.targetX; player.y = player.targetY; player.isMoving = false; } else { player.x += Math.sign(dx) * speed; player.y += Math.sign(dy) * speed; player.bobFrame += 0.1; } // Slower bob</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else if (!introCutsceneActive &amp;&amp; !officeCutsceneActive) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (keys.ArrowUp) tryMove(0, -1); else if (keys.ArrowDown) tryMove(0, 1); else if (keys.ArrowLeft) tryMove(-1, 0); else if (keys.ArrowRight) tryMove(1, 0);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (keys[" "] &amp;&amp; !keyProcessed[" "] &amp;&amp; !player.isMoving &amp;&amp; player.interactionCooldown === 0 &amp;&amp; !introCutsceneActive &amp;&amp; !officeCutsceneActive) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>keyProcessed[" "] = true; let interact = false;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const adj = [{x: player.gridX, y: player.gridY - 1}, {x: player.gridX, y: player.gridY + 1}, {x: player.gridX - 1, y: player.gridY}, {x: player.gridX + 1, y: player.gridY}];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (let pos of adj) { for (let npc of activeNPCs) { if (npc.gridX === pos.x &amp;&amp; npc.gridY === pos.y) { if (npc.heal) player.hp = player.maxHp; startDialogue(npc); interact = true; break; } } if (interact) break; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (currentState === STATE.DIALOGUE) { if (keys[" "] &amp;&amp; !keyProcessed[" "] &amp;&amp; player.interactionCooldown === 0) { keyProcessed[" "] = true; advanceDialogue(); } if (player.interactionCooldown &gt; 0) player.interactionCooldown--; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (currentState === STATE.BATTLE) updateBattle();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (currentState === STATE.PENALTY) updatePenalty();</p>
+<p class="p1">}</p>
+<p class="p1">function drawMapScreen() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillStyle = activeRoom.color || COLORS.floor;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (activeRoom.name === "ASTRO TURF") ctx.fillStyle = COLORS.astroFloor;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillRect(0, 0, canvas.width, canvas.height);</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>for (let y = 0; y &lt; ROWS; y++) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>for (let x = 0; x &lt; COLS; x++) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const tile = activeMap[y][x];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (tile === 1) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>ctx.fillStyle = COLORS.wall;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>ctx.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>ctx.strokeStyle = '#222';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>ctx.strokeRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (tile === 2) { // Door</p>
+<p class="p1"><span class="Apple-converted-space">                </span>drawSprite(ctx, 'door', x*TILE_SIZE, y*TILE_SIZE, TILE_SIZE, true);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (tile === 3) { // Table</p>
+<p class="p1"><span class="Apple-converted-space">                </span>drawSprite(ctx, 'table', x*TILE_SIZE, y*TILE_SIZE, TILE_SIZE, true);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (tile === 4) { // Chair</p>
+<p class="p1"><span class="Apple-converted-space">                </span>drawSprite(ctx, 'chair', x*TILE_SIZE, y*TILE_SIZE, TILE_SIZE, true);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (tile === 5) { // Plant</p>
+<p class="p1"><span class="Apple-converted-space">                </span>drawSprite(ctx, 'plant', x*TILE_SIZE, y*TILE_SIZE, TILE_SIZE, true);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (tile === 6) { // Altar/Counter</p>
+<p class="p1"><span class="Apple-converted-space">                </span>drawSprite(ctx, 'table', x*TILE_SIZE, y*TILE_SIZE, TILE_SIZE, true);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else if (tile === 7) { // Computer</p>
+<p class="p1"><span class="Apple-converted-space">                </span>drawSprite(ctx, 'computer', x*TILE_SIZE, y*TILE_SIZE, TILE_SIZE, true);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Astro Turf Markings</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (activeRoom.name === "ASTRO TURF") {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.strokeStyle = "rgba(255,255,255,0.3)";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.lineWidth = 2;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.beginPath();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Mid line</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.moveTo(canvas.width/2, 40);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.lineTo(canvas.width/2, canvas.height-40);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.stroke();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Center circle</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.beginPath();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.arc(canvas.width/2, canvas.height/2, 50, 0, Math.PI*2);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.stroke();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.textAlign = 'center';</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Draw Crowd</p>
+<p class="p1"><span class="Apple-converted-space">    </span>activeCrowd.forEach(c =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">         </span>const drawX = (c.pixelX !== undefined) ? c.pixelX : c.gridX * TILE_SIZE;</p>
+<p class="p1"><span class="Apple-converted-space">         </span>const drawY = (c.pixelY !== undefined) ? c.pixelY : c.gridY * TILE_SIZE;</p>
+<p class="p1"><span class="Apple-converted-space">         </span>const bob = c.isMoving ? (frames / 5) : 0;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">         </span>drawSprite(ctx, c.spriteKey, drawX, drawY, TILE_SIZE, c.facingRight, bob);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>activeMinions.forEach(m =&gt; {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>if(m.active) drawSprite(ctx, m.spriteKey, m.gridX * TILE_SIZE, m.gridY * TILE_SIZE, TILE_SIZE, true);<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>activeNPCs.forEach(npc =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const drawX = (npc.pixelX !== undefined) ? npc.pixelX : npc.gridX * TILE_SIZE;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const drawY = (npc.pixelY !== undefined) ? npc.pixelY : npc.gridY * TILE_SIZE;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const bob = npc.isMoving ? (frames / 5) : 0;<span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>drawSprite(ctx, npc.spriteKey, drawX, drawY, TILE_SIZE, false, bob);</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (npc.id === 'grant_final' &amp;&amp; activeBoss &amp;&amp; !activeBoss.active) {</p>
+<p class="p1"><span class="Apple-converted-space">           </span>drawSprite(ctx, 'alert', npc.gridX * TILE_SIZE, (npc.gridY - 1) * TILE_SIZE, TILE_SIZE, false);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (activeBoss &amp;&amp; activeBoss.active) {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>drawSprite(ctx, activeBoss.spriteKey, activeBoss.gridX * TILE_SIZE, activeBoss.gridY * TILE_SIZE, 50, false);<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>drawSprite(ctx, player.spriteKey, player.x, player.y, TILE_SIZE, player.facingRight, player.isMoving ? player.bobFrame : 0);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillStyle = '#fff'; ctx.textAlign = 'left'; ctx.font = '12px "Press Start 2P"';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillText(`HP: ${player.hp}`, 10, 20);<span class="Apple-converted-space"> </span></p>
+<p class="p1">}</p>
+<p class="p1">function drawBattle() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.save();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (battleShake &gt; 0) ctx.translate((Math.random()-0.5)*battleShake, (Math.random()-0.5)*battleShake);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Background</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillStyle = '#f8f8f8'; ctx.fillRect(0,0,800,600); // Light BG</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillStyle = '#d0e0f0'; ctx.beginPath(); ctx.moveTo(0,600); ctx.lineTo(800,600); ctx.lineTo(800,300); ctx.lineTo(0,450); ctx.fill(); // Ground</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Platforms</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillStyle = '#c0c0c0';<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.beginPath(); ctx.ellipse(580, 200, 120, 40, 0, 0, Math.PI*2); ctx.fill(); // Enemy Base</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.beginPath(); ctx.ellipse(200, 450, 120, 40, 0, 0, Math.PI*2); ctx.fill(); // Player Base</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Sprites</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Player</p>
+<p class="p1"><span class="Apple-converted-space">    </span>drawSprite(ctx, player.spriteKey, 140, 370, 128, true);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Enemy - Handle Fainting Logic</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let enemyY = 120;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let enemyOpacity = 1.0;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (battleState === 'FAINT_ANIM') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const progress = Math.min(1, faintTimer / 60); // Fade over 1 second</p>
+<p class="p1"><span class="Apple-converted-space">        </span>enemyY += progress * 50;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>enemyOpacity = 1 - progress;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else if (battleState === 'VICTORY_WAIT') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>enemyY += 50;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>enemyOpacity = 0;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (battleState !== 'VICTORY_WAIT') {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">       </span>if (activeBattleEnemy.hp &gt; 0 || battleState === 'FAINT_ANIM') {</p>
+<p class="p1"><span class="Apple-converted-space">           </span>drawSprite(ctx, activeBattleEnemy.spriteKey, 520, enemyY, 128, false, 0, enemyOpacity);</p>
+<p class="p1"><span class="Apple-converted-space">       </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (activeBattleEnemy.hp &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>drawHealthBox(50, 50, activeBattleEnemy.name, activeBattleEnemy.lvl, activeBattleEnemy.hp, activeBattleEnemy.maxHp, false);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>drawHealthBox(450, 350, "PLAYER", 13, player.hp, player.maxHp, true);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>battleEffects.forEach(p =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (p.type === 'projectile') {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Draw simple square projectile</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.fillStyle = p.color || '#fff';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.fillRect(p.x - 10, p.y - 10, 20, 20);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.strokeStyle = '#000';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.strokeRect(p.x - 10, p.y - 10, 20, 20);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>else { ctx.font='20px "Press Start 2P"'; ctx.fillStyle=p.color; ctx.fillText(p.text, p.x, p.y); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// UI</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillStyle = '#222'; ctx.fillRect(0, 480, 800, 120);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillStyle = '#fff'; ctx.lineWidth = 4; ctx.strokeStyle = '#666'; ctx.strokeRect(10, 490, 780, 100); ctx.fillRect(10, 490, 780, 100);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillStyle = '#000'; ctx.textAlign = 'left'; ctx.font = '14px "Press Start 2P"';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (battleState === 'MENU') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Dynamic Left Box Text based on Selection</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let desc = "";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (battleMenuIdx === 0) desc = "QUESTION: Answer JCQ quiz.";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>else if (battleMenuIdx === 1) desc = "GEN-AI: Risky! (60% Hit / 40% Hurt)";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>else if (battleMenuIdx === 2) desc = "RUN: Escape battle.";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillStyle = '#000';<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>wrapText(ctx, desc, 35, 535, 350, 20); // Wrapped description</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Menu Box</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillStyle = '#fff'; ctx.strokeStyle = '#000'; ctx.fillRect(400, 490, 390, 100); ctx.strokeRect(400, 490, 390, 100);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillStyle = '#000';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Modified Menu Options per Request</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 0: QUESTION, 1: GEN-AI, 2: RUN</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const opts = ["QUESTION", "GEN-AI", "RUN"];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillText((battleMenuIdx===0?"&gt;":" ")+opts[0], 420, 530);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillText((battleMenuIdx===1?"&gt;":" ")+opts[1], 620, 530);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillText((battleMenuIdx===2?"&gt;":" ")+opts[2], 420, 560);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else if (battleState === 'QUESTION') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.font = '12px "Press Start 2P"';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillStyle = '#000';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Use wrapText for questions too!</p>
+<p class="p1"><span class="Apple-converted-space">        </span>wrapText(ctx, currentQuestion.q, 30, 505, 740, 18);</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>currentQuestion.options.forEach((o, i) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.fillStyle = i === selectedOptionIdx ? '#d00' : '#000';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Ensure options don't clip if wrapping pushes them down (simplified vertical stack)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let yPos = 545 + (i*20);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.fillText((i===selectedOptionIdx?"&gt; ":"<span class="Apple-converted-space">  </span>")+o, 30, yPos);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillStyle = '#000';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>wrapText(ctx, battleMsg, 35, 535, 740, 20);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (battleState === 'VICTORY_WAIT') {</p>
+<p class="p1"><span class="Apple-converted-space">             </span>ctx.fillStyle = '#d00';<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">             </span>ctx.fillText("[PRESS 'A' TO CONTINUE]", 450, 570);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.restore();</p>
+<p class="p1">}</p>
+<p class="p1">function drawHealthBox(x, y, name, lvl, hp, maxHp, showNumbers) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Box Body</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillStyle = '#fff'; ctx.strokeStyle='#000'; ctx.lineWidth=3;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillRect(x, y, 300, 80); ctx.strokeRect(x, y, 300, 80);</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Text</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillStyle = '#000'; ctx.font = '14px "Press Start 2P"'; ctx.textAlign = 'left';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillText(name, x + 10, y + 30);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillText("Lv" + lvl, x + 220, y + 30);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// HP Bar</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillStyle = '#555'; ctx.fillRect(x + 60, y + 45, 200, 15); // Back</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const pct = Math.max(0, hp / maxHp);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillStyle = pct &gt; 0.5 ? '#4f4' : (pct &gt; 0.2 ? '#fd0' : '#f44');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillRect(x + 60, y + 45, 200 * pct, 15); // Front</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillStyle = '#000'; ctx.font = '10px "Press Start 2P"'; ctx.fillText("HP", x + 30, y + 57);</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (showNumbers) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillText(`${Math.floor(hp)}/ ${maxHp}`, x + 150, y + 70);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">}</p>
+<p class="p1">function drawEndScreen() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.fillStyle = currentState === STATE.WIN ? '#000' : '#200'; ctx.fillRect(0,0,800,600);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.textAlign = 'center';<span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (currentState === STATE.WIN) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.font = '30px "Press Start 2P"';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillStyle = '#44ff44';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillText("INTEGRITY RESTORED!", 400, 60);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.font = '14px "Press Start 2P"';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillStyle = '#ffffff';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillText("Great job! You have purged the glitches.", 400, 110);</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillStyle = '#f0db4f';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillText("REMEMBER THE AI CODE:", 400, 160);</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.textAlign = 'left';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillStyle = '#ffffff';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillText("1. AUTHENTICITY: Your work must be your own.", 80, 210);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillText("2. TRANSPARENCY: Reference AI tools used.", 80, 250);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillText("3. VERIFICATION: Check AI facts.", 80, 290);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillText("4. CONSEQUENCES: Misuse = Disqualification.", 80, 330);</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.textAlign = 'center';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillStyle = '#cccccc';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillText("Use AI as a tool, not a replacement.", 400, 380);<span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillStyle = '#ffffff';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillText("Press 'A' to Restart", 400, 560);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Mr Clinton Pop-up (10 seconds = 600 frames at 60fps)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (winTimer &gt; 600) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Draw Box</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.fillStyle = '#333';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.strokeStyle = '#fff';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.lineWidth = 4;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.fillRect(150, 420, 500, 100);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.strokeRect(150, 420, 500, 100);</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Draw Clinton</p>
+<p class="p1"><span class="Apple-converted-space">            </span>drawSprite(ctx, 'clinton', 170, 440, 60, false);</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Draw Text</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.fillStyle = '#fff';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.textAlign = 'left';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.font = '12px "Press Start 2P"';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ctx.fillText("Mr Clinton:", 250, 450);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>wrapText(ctx, "\"You did a really really brilliant job!\"", 250, 480, 380, 20);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillStyle = '#f44';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.font = '30px "Press Start 2P"';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillText("GAME OVER", 400, 250);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillStyle = '#fff'; ctx.font = '14px "Press Start 2P"';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillText(battleMsg, 400, 320);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillText("Press 'A' to restart.", 400, 450);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">}</p>
+<p class="p1">function draw() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>ctx.clearRect(0, 0, canvas.width, canvas.height);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (currentState === STATE.TRANSITION) { drawMapScreen(); const p = 1 - (transitionTimer / 90); const h = (canvas.height / 2) * p; ctx.fillStyle = '#000'; ctx.fillRect(0, 0, canvas.width, h); ctx.fillRect(0, canvas.height - h, canvas.width, h); if (transitionTimer % 4 &lt; 2) { ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'; ctx.fillRect(0, 0, canvas.width, canvas.height); } return; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (currentState === STATE.BATTLE) { drawBattle(); return; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (currentState === STATE.PENALTY) { drawPenalty(); return; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (currentState === STATE.WIN || currentState === STATE.GAMEOVER) { drawEndScreen(); return; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>drawMapScreen();</p>
+<p class="p1">}</p>
+<p class="p1">window.addEventListener('keydown', e =&gt; { if ((currentState === STATE.WIN || currentState === STATE.GAMEOVER) &amp;&amp; e.key === " ") location.reload(); });</p>
+<p class="p1">function loop() { update(); draw(); requestAnimationFrame(loop); }</p>
+<p class="p1">loop();</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
