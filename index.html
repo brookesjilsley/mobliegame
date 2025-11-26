@@ -311,7 +311,8 @@ const ROWS = 15;
 const COLORS = { 
     floor: '#222', wall: '#444', 
     mediaFloor: '#203020', libraryFloor: '#202040', examFloor: '#302020',
-    astroFloor: '#38761d'
+    astroFloor: '#38761d', pastoralFloor: '#2a3b4c', dtFloor: '#3d3d3d',
+    rsFloor: '#4b3621' // Dark wood/brown for RS
 };
 
 // --- PIXEL ART SPRITE SYSTEM ---
@@ -319,12 +320,13 @@ const PALETTE = {
     '.': null, 'x': '#000000', 's': '#ffccaa', 'w': '#ffffff', 'r': '#d82020',
     'b': '#2040d8', 'g': '#44aa44', 'y': '#ffee00', 'h': '#663300',
     'c': '#888888', 'p': '#aa00aa', 'm': '#00aa00', 'd': '#222222',
-    'D': '#664400', 'T': '#8b4513', 'C': '#666666', 'L': '#228b22', 'O': '#ff9900'
+    'D': '#664400', 'T': '#8b4513', 'C': '#666666', 'L': '#228b22', 'O': '#ff9900',
+    'S': '#d2a679' // Added darker skin tone for Miss Patel
 };
 const SPRITE_DATA = {
     player: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xppppppx.....","..xppppppppx....", ".xppwwwwwwppx...", ".xppwwwwwwppx...", ".xppppppppppx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],
     grant: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhsxwwxshx....", "..xhsssssshx....", "....xxxxxx......", "...xrrwwrrx.....","..xrrwwwwrrx....", ".xrrwwwwwwrrx...", ".xrrwwwwwwrrx...", ".xrrrrrrrrrrx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],
-    brookes: ["....xxxxxx......", "...xbbbbbbx.....", "..xbbbbbbbbx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhshhhshhx....", "....xxxxxx......", "...xggggggx.....","..xggggggggx....", ".xggccccccggx...", ".xggccccccggx...", ".xggggggggggx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],
+    brookes: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.ww.shx....", "..xhhhhhhhhx....", "....xxxxxx......", "...xggggggx.....","..xggggggggx....", ".xggccccccggx...", ".xggccccccggx...", ".xggggggggggx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],
     botwright: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xccccccx.....","..xccwwwwccx....", ".xccwwrrwwccx...", ".xccwwrrwwccx...", ".xccccccccccx...","..xddddddddx....", "..xddddddddx....", "...xx....xx.....", "...xx....xx....."],
     mcmahon: ["....xxxxxx......", "...xyyyyyyx.....", "..xyyyyyyyyx....", "..xyssxxssyx....","..xys.xx.syx....", "..xyssssssyx....", "....xxxxxx......", "...xppppppx.....","..xppppppppx....", ".xppwwwwwwppx...", ".xppwwwwwwppx...", ".xppppppppppx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],
     oneill: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xbbbbbbx.....","..xbbbbbbbbx....", ".xbbwwwwwwbbx...", ".xbbwwyywwbbx...", ".xbbbbbbbbbbx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],
@@ -339,7 +341,7 @@ const SPRITE_DATA = {
     lakin: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xddddddx.....","..xddddddddx....", ".xddwwwwwwddx...", ".xddwwwwwwddx...", ".xddddddddddx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],
     hemmings: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xDDDDDDx.....","..xDDDDDDDDx....", ".xDDwwwwwwDDx...", ".xDDwwwwwwDDx...", ".xDDDDDDDDDDx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],
     pearson: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xppppppx.....","..xppppppppx....", ".xppwwwwwwppx...", ".xppwwwwwwppx...", ".xppppppppppx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],
-    patel: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xOOOOOOx.....","..xOOOOOOOOx....", ".xOOwwwwwwOOx...", ".xOOwwwwwwOOx...", ".xOOOOOOOOOOx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],
+    patel: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhSSxxSShx....","..xhS.xx.Shx....", "..xhSSSSSShx....", "....xxxxxx......", "...xOOOOOOx.....","..xOOOOOOOOx....", ".xOOwwwwwwOOx...", ".xOOwwwwwwOOx...", ".xOOOOOOOOOOx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],
     herron: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xyyyyyyx.....","..xyyyyyyyyx....", ".xyywwwwwwyyx...", ".xyywwwwwwyyx...", ".xyyyyyyyyyyx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],
     rose: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xrrrrrrx.....","..xrrrrrrrrx....", ".xrrwwwwwwrrx...", ".xrrwwwwwwrrx...", ".xrrrrrrrrrrx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],
     blair: ["....xxxxxx......", "...xhhhhhhx.....", "..xhhhhhhhhx....", "..xhssxxsshx....","..xhs.xx.shx....", "..xhsssssshx....", "....xxxxxx......", "...xCCCCCCx.....","..xCCCCCCCCx....", ".xCCwwwwwwCCx...", ".xCCwwwwwwCCx...", ".xCCCCCCCCCCx...","..xccccccccx....", "..xccccccccx....", "...xx....xx.....", "...xx....xx....."],
@@ -525,22 +527,37 @@ function playSound(type) {
 const MAP_LAYOUTS = {
     'COMMON_ROOM': {
         name: "COMMON ROOM (HUB)", color: '#333344',
-        data: [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,5,0,0,0,0,0,4,3,3,4,0,0,0,0,0,0,0,5,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,4,3,4,0,0,0,0,0,0,0,4,3,4,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,4,3,3,4,0,0,4,3,3,4,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,4,3,4,0,0,0,0,0,0,0,4,3,4,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
+        data: [
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,5,0,0,0,0,0,4,3,3,4,0,0,0,0,0,0,0,5,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,4,3,4,0,0,0,0,0,0,0,4,3,4,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,4,3,3,4,0,0,4,3,3,4,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,4,3,4,0,0,0,0,0,0,0,4,3,4,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+        ],
         npcs: [
-            { id: 'mcmahon_intro', name: 'Mrs McMahon', role: 'Teacher', spriteKey: 'mcmahon', color: '#5555ff', gridX: 10, gridY: 3, dialogue: ["Improper use of AI is sweeping Archbishop Ilsley.", "The bugs have locked Mrs Grant in her office with a Glitch.", "You need to help the school by destroying three bugs to unlock her office then fight the Glitch.", "Good Luck."] },
+            { id: 'mcmahon_intro', name: 'Mrs McMahon', role: 'Teacher', spriteKey: 'mcmahon', color: '#5555ff', gridX: 10, gridY: 3, dialogue: ["Improper use of AI is sweeping Archbishop Ilsley.", "The bugs have locked Mrs Grant in her office.", "You must defeat the bugs in the classrooms to unlock her door.", "Once opened, fight the Main Glitch to save our data!", "Press 'A' or SPACE to interact with staff and items.", "Good Luck."] },
             { id: 'clinton', name: 'Mr Clinton', role: 'Head Teacher', spriteKey: 'clinton', color: '#333333', gridX: 5, gridY: 5, dialogue: ["I am Mr Clinton, the head teacher.", "We have some bugs."] },
             { id: 'oneill_strict_cr', name: 'Mrs O\'Neill', role: 'Head of Behaviour', spriteKey: 'oneill_strict', color: '#ff0000', gridX: 15, gridY: 8, dialogue: [], autoInteract: true, damage: 10, messages: ["You are being too loud!", "I told you to get to lesson!", "This isn't a doss house!"] },
             { id: 'brookes', name: 'Mr Brookes', role: 'Media & Film', spriteKey: 'brookes', color: '#44aa44', gridX: 2, gridY: 5, dialogue: ["*SIGH* I told them we needed more AI and Media Literacy training...", "But would they listen... No!", "Anyways, you might want to avoid Ms O'Neill.", "If you need some health points, visit the canteen or chapel."] }
         ],
         minions: [],
-        doors: [{ x: 9, y: 13, target: 'CORRIDOR', targetX: 9, targetY: 2 }, { x: 10, y: 13, target: 'CORRIDOR', targetX: 10, targetY: 2 }],
+        doors: [{ x: 9, y: 13, target: 'CORRIDOR', targetX: 9, targetY: 2 }, { x: 10, y: 13, target: 'CORRIDOR', targetX: 10, targetY: 2 }, { x: 19, y: 7, target: 'OFFICE', targetX: 1, targetY: 7 }],
         crowd: []
     },
     'CORRIDOR': {
         name: "MAIN CORRIDOR", color: '#222222',
         data: [[1,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
         npcs: [
-            { id: 'botwright', name: 'Mr Botwright', role: 'Tutor', spriteKey: 'botwright', color: '#5555ff', gridX: 12, gridY: 8, dialogue: ["Global Link offers amazing youth exchange programmes focused on global citizenship.", "We are looking at a structured learning experience in Peru!", "It is not just a holiday; it is about human rights and development."] },
             { id: 'oneill_strict', name: 'Mrs O\'Neill', role: 'Head of Behaviour', spriteKey: 'oneill_strict', color: '#ff0000', gridX: 5, gridY: 6, dialogue: [], autoInteract: true, damage: 10, messages: ["You are being too loud!", "I told you to get to lesson!", "This isn't a doss house!"] },
             { id: 'foley', name: 'Mr Foley', role: 'Teacher', spriteKey: 'clinton', color: '#00aaaa', gridX: 8, gridY: 4, dialogue: ["Come on now, walk with purpose, every minute matters!"] },
             { id: 'regan', name: 'Dr Regan', role: 'DofE Leader', spriteKey: 'botwright', color: '#556b2f', gridX: 16, gridY: 10, dialogue: ["Boots check! Map check! Have you logged into eDofE check?", "For volunteering, you could use AI to help a charity.", "It is great for drafting newsletters or planning fundraising events!"] }
@@ -551,31 +568,131 @@ const MAP_LAYOUTS = {
     },
     'MAIN_OFFICE': {
         name: "MAIN OFFICE", color: '#333355',
-        data: [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,4,4,4,4,4,0,0,3,3,3,3,3,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,3,3,3,3,3,0,0,5,5,0,1],[1,0,0,0,0,0,0,0,0,3,3,3,3,3,0,0,5,5,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
-        npcs: [
-            { id: 'pearson', name: 'Mrs Pearson', role: 'Office Manager', spriteKey: 'pearson', color: '#aa00aa', gridX: 2, gridY: 10, dialogue: ["Can't talk, sorting cover.", "But remember: AI often lacks local knowledge.", "If it sounds generic, check it!"] },
-            { id: 'staff1', name: 'Office Staff', role: 'Admin', spriteKey: 'julie', color: '#888888', gridX: 4, gridY: 4, dialogue: ["Busy, busy, busy..."], static: true },
-            { id: 'staff2', name: 'Office Staff', role: 'Admin', spriteKey: 'julie', color: '#888888', gridX: 12, gridY: 3, dialogue: ["Did you sign in?"], static: true },
-            { id: 'blair', name: 'Mr Blair', role: 'Maths', spriteKey: 'blair', color: '#008080', gridX: 15, gridY: 5, dialogue: ["You should come to Maths Club.", "I am trying to devise a strategy to finally beat Mr Jackson at chess.", "Did you know AI mastered chess years ago? Deep Blue beat Kasparov in 1997!"] }
+        data: [
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,5,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,5,1],
+            [1,0,7,0,0,7,0,0,7,0,0,0,0,3,0,0,0,0,0,1],
+            [1,0,4,0,0,4,0,0,4,0,0,0,0,3,0,4,4,4,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,1],
+            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,1],
+            [1,0,7,0,0,7,0,0,0,0,0,0,0,3,0,0,0,0,0,1],
+            [1,0,4,0,0,4,0,0,0,0,0,0,0,3,0,4,4,4,0,1],
+            [1,5,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,5,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         ],
-        minions: [{gridX: 10, gridY: 9, spriteKey: 'bug', active: true}],
-        doors: [{ x: 19, y: 7, target: 'CORRIDOR', targetX: 1, targetY: 9 }],
+        npcs: [
+            { id: 'pearson', name: 'Mrs Pearson', role: 'Office Manager', spriteKey: 'pearson', color: '#aa00aa', gridX: 12, gridY: 6, dialogue: ["Can't talk, sorting cover.", "But remember: AI often lacks local knowledge.", "If it sounds generic, check it!"] },
+            { id: 'staff1', name: 'Office Staff', role: 'Admin', spriteKey: 'julie', color: '#888888', gridX: 2, gridY: 3, dialogue: ["Busy, busy, busy..."], static: true },
+            { id: 'staff2', name: 'Office Staff', role: 'Admin', spriteKey: 'julie', color: '#888888', gridX: 5, gridY: 3, dialogue: ["Did you sign in?"], static: true },
+            { id: 'blair', name: 'Mr Blair', role: 'Maths', spriteKey: 'blair', color: '#008080', gridX: 16, gridY: 5, dialogue: ["You should come to Maths Club.", "I am trying to devise a strategy to finally beat Mr Jackson at chess.", "Did you know AI mastered chess years ago? Deep Blue beat Kasparov in 1997!"] }
+        ],
+        minions: [{gridX: 8, gridY: 9, spriteKey: 'bug', active: true}],
+        doors: [{ x: 19, y: 7, target: 'CORRIDOR', targetX: 1, targetY: 9 }, { x: 0, y: 7, target: 'PASTORAL_OFFICE', targetX: 18, targetY: 7 }],
         crowd: []
+    },
+    'PASTORAL_OFFICE': {
+        name: "PASTORAL OFFICE", color: '#2a3b4c',
+        data: [
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,1],
+            [1,0,0,3,3,0,0,3,3,0,0,3,3,0,0,0,0,0,0,1],
+            [1,0,0,4,4,0,0,4,4,0,0,4,4,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,4,3,4,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,4,0,4,0,4,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+        ],
+        npcs: [
+            { id: 'bruton', name: 'Mr Bruton', role: 'Head of Year', spriteKey: 'grant', color: '#00ffff', gridX: 15, gridY: 5, dialogue: ["Stay reactive but stable, like a Noble Gas!", "If you're feeling under pressure, remember: PV = nRT.", "Balance your revision equation carefully.", "Come to Chemistry Club!"] },
+            { id: 'pastoral1', name: 'Pastoral Staff', role: 'Support', spriteKey: 'julie', color: '#ffcc00', gridX: 4, gridY: 3, dialogue: ["Take deep breaths.", "Everything will be okay.", "Revision works best in small chunks."] },
+            { id: 'pastoral2', name: 'Pastoral Staff', role: 'Support', spriteKey: 'julie', color: '#ffcc00', gridX: 8, gridY: 3, dialogue: ["Remember to drink water.", "Don't forget to sleep properly!"] },
+            { id: 'pastoral3', name: 'Pastoral Staff', role: 'Support', spriteKey: 'julie', color: '#ffcc00', gridX: 12, gridY: 3, dialogue: ["Don't bottle up your stress.", "We are here to listen.", "You can do this!"] }
+        ],
+        minions: [{gridX: 8, gridY: 8, spriteKey: 'bug', active: true}],
+        doors: [{ x: 19, y: 7, target: 'MAIN_OFFICE', targetX: 1, targetY: 7 }],
+        crowd: [
+            { gridX: 2, gridY: 9, spriteKey: 'student', facingRight: true, static: true }, 
+            { gridX: 4, gridY: 9, spriteKey: 'student', facingRight: true, static: true },
+            { gridX: 6, gridY: 9, spriteKey: 'student', facingRight: true, static: true },
+            { gridX: 10, gridY: 6, spriteKey: 'student', facingRight: false, moveChance: 0.1 }, 
+            { gridX: 3, gridY: 11, spriteKey: 'student', facingRight: true, moveChance: 0.1 }
+        ]
     },
     'CANTEEN': {
         name: "THE CANTEEN", color: '#302020',
-        data: [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,3,3,3,3,0,0,3,3,3,3,0,0,3,3,3,3,0,0,1],[1,4,4,4,4,0,0,4,4,4,4,0,0,4,4,4,4,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,3,3,3,3,0,0,3,3,3,3,0,0,3,3,3,3,0,0,1],[1,4,4,4,4,0,0,4,4,4,4,0,0,4,4,4,4,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,6,6,6,6,6,6,6,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
+        data: [
+            [1,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,1,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,3,3,3,3,0,0,3,3,3,3,0,0,3,3,3,3,0,0,1],
+            [1,4,4,4,4,0,0,4,4,4,4,0,0,4,4,4,4,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,3,3,3,3,0,0,3,3,3,3,0,0,3,3,3,3,0,0,1],
+            [1,4,4,4,4,0,0,4,4,4,4,0,0,4,4,4,4,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,6,6,6,6,6,6,6,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,1,1]
+        ],
         npcs: [
-            { id: 'julie', name: 'Julie', role: 'Canteen Staff', spriteKey: 'julie', color: '#ffffff', gridX: 10, gridY: 11, dialogue: ["Hi love! Need a break?", "Here, have a hot meal. It's on the house."], heal: true },
+            { id: 'julie', name: 'Julie', role: 'Canteen Staff', spriteKey: 'julie', color: '#ffffff', gridX: 10, gridY: 6, dialogue: ["Hi love! Need a break?", "Here, have a hot meal. It's on the house."], heal: true },
             { id: 'student_chicken', name: 'Student', role: 'Year 12', spriteKey: 'student', color: '#ddddff', gridX: 8, gridY: 10, dialogue: ["Do the bugs know it is Chicken Burger day?"] },
             { id: 'student_art', name: 'Student', role: 'Year 13', spriteKey: 'student', color: '#ddddff', gridX: 3, gridY: 4, dialogue: ["I am just completing my Art Competition entry."], static: true },
             { id: 'student_hungry', name: 'Student', role: 'Year 12', spriteKey: 'student', color: '#ddddff', gridX: 9, gridY: 4, dialogue: ["I am sooooooo hungry."], static: true },
-            { id: 'mcdonald', name: 'Mr McDonald', role: 'Teacher', spriteKey: 'mcdonald', color: '#ffff00', gridX: 5, gridY: 8, dialogue: ["I am on duty. I hope the bugs do not mess with Bromcom today"] },
-            { id: 'lakin', name: 'Mr Lakin', role: 'Teacher', spriteKey: 'lakin', color: '#8888ff', gridX: 15, gridY: 8, dialogue: ["The glitch best not break the laser cutter."] }
+            { id: 'mcdonald', name: 'Mr McDonald', role: 'Teacher', spriteKey: 'mcdonald', color: '#ffff00', gridX: 5, gridY: 8, dialogue: ["I am on duty. I hope the bugs do not mess with Bromcom today"] }
         ],
         minions: [],
-        doors: [{ x: 0, y: 7, target: 'CORRIDOR', targetX: 18, targetY: 3 }, { x: 19, y: 7, target: 'ASTRO_TURF', targetX: 1, targetY: 7 }],
-        crowd: [{ gridX: 2, gridY: 4, spriteKey: 'student', facingRight: true, static: true }, { gridX: 14, gridY: 4, spriteKey: 'student', facingRight: false, static: true }]
+        doors: [{ x: 0, y: 7, target: 'CORRIDOR', targetX: 18, targetY: 3 }, { x: 19, y: 7, target: 'ASTRO_TURF', targetX: 1, targetY: 7 }, { x: 9, y: 0, target: 'DT_BLOCK', targetX: 9, targetY: 13 }, { x: 10, y: 0, target: 'DT_BLOCK', targetX: 10, targetY: 13 }, { x: 9, y: 14, target: 'RS_BLOCK', targetX: 9, targetY: 1 }, { x: 10, y: 14, target: 'RS_BLOCK', targetX: 10, targetY: 1 }],
+        crowd: [
+            { gridX: 2, gridY: 4, spriteKey: 'student', facingRight: true, static: true }, 
+            { gridX: 14, gridY: 4, spriteKey: 'student', facingRight: false, static: true },
+            { gridX: 6, gridY: 2, spriteKey: 'student', facingRight: true, moveChance: 0.05 },
+            { gridX: 14, gridY: 6, spriteKey: 'student', facingRight: false, moveChance: 0.05 },
+            { gridX: 9, gridY: 12, spriteKey: 'student', facingRight: true, moveChance: 0.05 }
+        ]
+    },
+    'DT_BLOCK': {
+        name: "DT BLOCK", color: '#3d3d3d',
+        data: [
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,3,3,3,0,3,3,3,0,3,3,3,0,3,3,3,0,0,1],
+            [1,0,3,3,3,0,3,3,3,0,3,3,3,0,3,3,3,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,3,3,3,0,3,3,3,0,3,3,3,0,3,3,3,0,0,1],
+            [1,0,3,3,3,0,3,3,3,0,3,3,3,0,3,3,3,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,7,7,7,0,0,0,0,0,0,0,0,7,7,7,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+        ],
+        npcs: [
+            { id: 'lakin', name: 'Mr Lakin', role: 'DT Teacher', spriteKey: 'lakin', color: '#8888ff', gridX: 3, gridY: 5, dialogue: ["The laser cutter is finally working!", "Don't forget your PPE.", "AI can help design, but you must build it."] },
+            { id: 'meredith', name: 'Mr Meredith', role: 'Careers Lead', spriteKey: 'botwright', color: '#a0522d', gridX: 16, gridY: 5, dialogue: ["Have you sorted your work experience yet?", "AI skills are in high demand for future careers.", "Check your emails for placement opportunities!"] },
+            { id: 'francioso', name: 'Mr Francioso', role: 'Head of Year', spriteKey: 'brookes', color: '#800080', gridX: 10, gridY: 8, dialogue: ["Tuck your shirt in!", "Design requires precision.", "If you use AI for your coursework, reference it or it's malpractice."] }
+        ],
+        minions: [{gridX: 10, gridY: 9, spriteKey: 'bug', active: true}],
+        doors: [{ x: 9, y: 13, target: 'CANTEEN', targetX: 9, targetY: 2 }, { x: 10, y: 13, target: 'CANTEEN', targetX: 10, targetY: 2 }],
+        crowd: []
     },
     'ASTRO_TURF': {
         name: "ASTRO TURF", color: '#38761d',
@@ -600,30 +717,44 @@ const MAP_LAYOUTS = {
             }
         ]
     },
-    'CHAPEL': {
-        name: "THE CHAPEL", color: '#202040',
-        data: [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,4,4,4,4,0,0,0,0,0,4,4,4,4,0,0,0,1],[1,0,0,4,4,4,4,0,0,0,0,0,4,4,4,4,0,0,0,1],[1,0,0,4,4,4,4,0,0,0,0,0,4,4,4,4,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,4,4,4,4,0,0,0,0,0,4,4,4,4,0,0,0,1],[1,0,0,4,4,4,4,0,0,0,0,0,4,4,4,4,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
-        npcs: [
-            { id: 'deacon', name: 'Deacon Martin', role: 'Chaplain', spriteKey: 'deacon', color: '#aaaaaa', gridX: 9, gridY: 2, dialogue: ["Peace be with you.", "Let me heal your weary soul."], heal: true },
-            { id: 'student_praying_1', name: 'Student', role: 'Year 13', spriteKey: 'student_kneeling', color: '#ddddff', gridX: 12, gridY: 4, dialogue: ["Please let the bugs go away...", "Amen."], static: true },
-            { id: 'student_praying_2', name: 'Student', role: 'Year 12', spriteKey: 'student_kneeling', color: '#ddddff', gridX: 6, gridY: 4, dialogue: ["I hope I pass my mocks...", "Please guide me."], static: true },
-            { id: 'student_praying_3', name: 'Student', role: 'Year 13', spriteKey: 'student_kneeling', color: '#ddddff', gridX: 8, gridY: 10, dialogue: ["Quiet please, I am reflecting."], static: true }
+    'RS_BLOCK': {
+        name: "RS BLOCK", color: '#4b3621',
+        data: [
+            [1,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,1,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,6,0,0,6,0,0,0,0,0,0,0,6,0,0,6,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,3,3,3,0,0,3,3,3,0,0,3,3,3,0,0,0,0,1],
+            [1,0,4,4,4,0,0,4,4,4,0,0,4,4,4,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,3,3,3,0,0,3,3,3,0,0,3,3,3,0,0,0,0,1],
+            [1,0,4,4,4,0,0,4,4,4,0,0,4,4,4,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         ],
-        minions: [],
-        doors: [{ x: 19, y: 7, target: 'CORRIDOR', targetX: 1, targetY: 5 }],
+        npcs: [
+            { id: 'duffy', name: 'Miss Duffy', role: 'Head of RS', spriteKey: 'mcmahon', color: '#ffd700', gridX: 15, gridY: 4, dialogue: ["Is AI created in God's image, or ours?", "We must consider the ethics of artificial consciousness.", "Compassion is something an algorithm cannot replicate."] },
+            { id: 'patel', name: 'Miss Patel', role: 'Debate Club', spriteKey: 'patel', color: '#ff9900', gridX: 4, gridY: 8, dialogue: ["We are debating AI ethics today.", "Does a chatbot have a soul?", "Come join Debate Club on Thursdays!"] },
+            { id: 'botwright', name: 'Mr Botwright', role: 'Tutor', spriteKey: 'botwright', color: '#5555ff', gridX: 12, gridY: 8, dialogue: ["Global Link isn't just geography, it's about understanding people.", "Different cultures view technology in different ways."] }
+        ],
+        minions: [{gridX: 9, gridY: 7, spriteKey: 'bug', active: true}],
+        doors: [{ x: 9, y: 0, target: 'CANTEEN', targetX: 9, targetY: 13 }, { x: 10, y: 0, target: 'CANTEEN', targetX: 10, targetY: 13 }],
         crowd: []
     },
     'CLASSROOM_HALL': {
         name: "LOWER CORRIDOR", color: '#222222',
         // Added door (2) at the bottom center (9, 8)
-        data: [[1,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[2,0,0,0,0,0,2,0,0,0,0,0,2,0,0,0,0,0,0,2],[1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1],[1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1],[1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,1,1],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]],
+        data: [[1,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[2,0,0,0,0,0,2,0,0,0,0,0,2,0,0,0,0,0,0,1],[1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1],[1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1],[1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1,1,1,1],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]],
         npcs: [
-            { id: 'oneill_strict_ch', name: 'Mrs O\'Neill', role: 'Head of Behaviour', spriteKey: 'oneill_strict', color: '#ff0000', gridX: 3, gridY: 3, dialogue: [], autoInteract: true, damage: 10, messages: ["You are being too loud!", "I told you to get to lesson!", "This isn't a doss house!"] },
-            { id: 'patel', name: 'Miss Patel', role: 'Debate Club', spriteKey: 'patel', color: '#ff9900', gridX: 10, gridY: 3, dialogue: ["You should come to debate club.", "AI can be biased, so you need to think on your own.", "Debate club is a great place to do it."] }
+            { id: 'oneill_strict_ch', name: 'Mrs O\'Neill', role: 'Head of Behaviour', spriteKey: 'oneill_strict', color: '#ff0000', gridX: 3, gridY: 3, dialogue: [], autoInteract: true, damage: 10, messages: ["You are being too loud!", "I told you to get to lesson!", "This isn't a doss house!"] }
         ],
         minions: [],
         // Added door to COMPUTER_SUITE
-        doors: [{ x: 9, y: 0, target: 'CORRIDOR', targetX: 9, targetY: 12 }, { x: 10, y: 0, target: 'CORRIDOR', targetX: 10, targetY: 12 }, { x: 0, y: 4, target: 'CLASSROOM_1', targetX: 18, targetY: 7 }, { x: 6, y: 4, target: 'CLASSROOM_2', targetX: 9, targetY: 13 }, { x: 12, y: 4, target: 'CLASSROOM_3', targetX: 9, targetY: 13 }, { x: 19, y: 4, target: 'OFFICE', targetX: 1, targetY: 7 }, { x: 9, y: 8, target: 'COMPUTER_SUITE', targetX: 9, targetY: 1 }, { x: 10, y: 8, target: 'COMPUTER_SUITE', targetX: 10, targetY: 1 }],
+        doors: [{ x: 9, y: 0, target: 'CORRIDOR', targetX: 9, targetY: 12 }, { x: 10, y: 0, target: 'CORRIDOR', targetX: 10, targetY: 12 }, { x: 0, y: 4, target: 'CLASSROOM_1', targetX: 18, targetY: 7 }, { x: 6, y: 4, target: 'CLASSROOM_2', targetX: 9, targetY: 13 }, { x: 12, y: 4, target: 'CLASSROOM_3', targetX: 9, targetY: 13 }, { x: 9, y: 8, target: 'COMPUTER_SUITE', targetX: 9, targetY: 1 }, { x: 10, y: 8, target: 'COMPUTER_SUITE', targetX: 10, targetY: 1 }],
         crowd: []
     },
     'COMPUTER_SUITE': {
@@ -706,8 +837,21 @@ const MAP_LAYOUTS = {
         data: [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,5,0,3,0,3,0,3,0,0,0,3,0,3,0,3,0,5,1],[1,0,0,4,0,4,0,4,0,0,0,4,0,4,0,4,0,0,1],[1,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,4,0,4,0,4,0,0,0,4,0,4,0,4,0,0,1],[1,5,0,3,0,3,0,3,0,0,0,3,0,3,0,3,0,5,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
         npcs: [{ id: 'grant_final', name: 'Mrs Grant', role: 'Head of Sixth Form', spriteKey: 'grant', color: '#ff5555', gridX: 16, gridY: 7, dialogue: ["The Main Glitch is right there!", "Defeat it to recover the JCQ Guidance data!"] }],
         minions: [],
-        doors: [{ x: 0, y: 7, target: 'CLASSROOM_HALL', targetX: 18, targetY: 4 }],
+        doors: [{ x: 0, y: 7, target: 'COMMON_ROOM', targetX: 18, targetY: 7 }],
         boss: { active: true, gridX: 9, gridY: 5, spriteKey: 'glitch', hp: 100 },
+        crowd: []
+    },
+    'CHAPEL': {
+        name: "THE CHAPEL", color: '#202040',
+        data: [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,4,4,4,4,0,0,0,0,0,4,4,4,4,0,0,0,1],[1,0,0,4,4,4,4,0,0,0,0,0,4,4,4,4,0,0,0,1],[1,0,0,4,4,4,4,0,0,0,0,0,4,4,4,4,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,4,4,4,4,0,0,0,0,0,4,4,4,4,0,0,0,1],[1,0,0,4,4,4,4,0,0,0,0,0,4,4,4,4,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
+        npcs: [
+            { id: 'deacon', name: 'Deacon Martin', role: 'Chaplain', spriteKey: 'deacon', color: '#aaaaaa', gridX: 9, gridY: 2, dialogue: ["Peace be with you.", "Let me heal your weary soul."], heal: true },
+            { id: 'student_praying_1', name: 'Student', role: 'Year 13', spriteKey: 'student_kneeling', color: '#ddddff', gridX: 12, gridY: 4, dialogue: ["Please let the bugs go away...", "Amen."], static: true },
+            { id: 'student_praying_2', name: 'Student', role: 'Year 12', spriteKey: 'student_kneeling', color: '#ddddff', gridX: 6, gridY: 4, dialogue: ["I hope I pass my mocks...", "Please guide me."], static: true },
+            { id: 'student_praying_3', name: 'Student', role: 'Year 13', spriteKey: 'student_kneeling', color: '#ddddff', gridX: 8, gridY: 10, dialogue: ["Quiet please, I am reflecting."], static: true }
+        ],
+        minions: [],
+        doors: [{ x: 19, y: 7, target: 'CORRIDOR', targetX: 1, targetY: 5 }],
         crowd: []
     }
 };
@@ -1167,13 +1311,16 @@ function switchRoom(roomKey, startX, startY) {
     if (!MAP_LAYOUTS[roomKey]) { console.error("INVALID ROOM KEY:", roomKey); return false; }
     const previousRoom = player.currentRoom;
     if (roomKey === 'OFFICE') {
-        const c1Cleared = MAP_LAYOUTS['CLASSROOM_1'].minions.every(m => !m.active);
-        const c2Cleared = MAP_LAYOUTS['CLASSROOM_2'].minions.every(m => !m.active);
+        // Updated unlock conditions: Pastoral Office, DT Block, Classroom 3
+        const pastoralCleared = MAP_LAYOUTS['PASTORAL_OFFICE'].minions.every(m => !m.active);
+        const dtCleared = MAP_LAYOUTS['DT_BLOCK'].minions.every(m => !m.active);
         const c3Cleared = MAP_LAYOUTS['CLASSROOM_3'].minions.every(m => !m.active);
-        if (!c1Cleared || !c2Cleared || !c3Cleared) {
+        
+        if (!pastoralCleared || !dtCleared || !c3Cleared) {
             playSound('ALERT');
-            const status = `C1: ${c1Cleared ? '✓' : ' ✗ '} | C2: ${c2Cleared ? '✓' : ' ✗ '} | C3: ${c3Cleared ? '✓' : ' ✗ '}`;
-            startDialogue({ name: 'SECURITY SYSTEM', role: 'LOCKDOWN', color: '#ff0000', dialogue: [">>> ACCESS DENIED <<<", "You must clear the bugs in ALL 3 Classrooms first.", status], heal: false });
+            // Updated Status Display to match A/B/C
+            const status = `Key A: ${pastoralCleared ? '✓' : ' ✗ '} | Key B: ${dtCleared ? '✓' : ' ✗ '} | Key C: ${c3Cleared ? '✓' : ' ✗ '}`;
+            startDialogue({ name: 'THE GLITCH', role: 'SYSTEM LOCK', color: '#ff0000', dialogue: ["HAHAHA! I have locked this door!", "You cannot enter until my minions are defeated.", "Find the correct bugs to destroy to unlock it!", status], heal: false });
             return false; 
         }
         if (!officeCutscenePlayed) { officeCutsceneActive = true; }
@@ -1193,7 +1340,7 @@ function tryMove(dx, dy) {
     const nextX = player.gridX + dx; const nextY = player.gridY + dy;
     if (nextX < 0 || nextX >= COLS || nextY < 0 || nextY >= ROWS) return;
     const tile = activeMap[nextY][nextX];
-    if (tile === 1 || (tile >= 3 && tile <= 6)) return; 
+    if (tile === 1 || (tile >= 3 && tile <= 7)) return; 
     for(let i=0; i<activeMinions.length; i++) { let m = activeMinions[i]; if (m.active && m.gridX === nextX && m.gridY === nextY) { startBattle('minion', i); return; } }
     if (activeBoss && activeBoss.active && activeBoss.gridX === nextX && activeBoss.gridY === nextY) { startBattle('boss', -1); return; }
     for (let door of activeRoom.doors) { if (door.x === nextX && door.y === nextY) { if(!switchRoom(door.target, door.targetX, door.targetY)) {} return; } }
@@ -1204,7 +1351,7 @@ function tryMove(dx, dy) {
 function update() {
     frames++;
     if (currentState === STATE.INTRO) {
-        if (keys[" "] && !keyProcessed[" "]) { keyProcessed[" "] = true; currentState = STATE.ROAM; player.interactionCooldown = 20; document.getElementById('intro-screen').style.display = 'none'; if (!introCutsceneFinished) introCutsceneActive = true; }
+        if (keys[" "] && !keyProcessed[" "] && frames > 60) { keyProcessed[" "] = true; currentState = STATE.ROAM; player.interactionCooldown = 20; document.getElementById('intro-screen').style.display = 'none'; if (!introCutsceneFinished) introCutsceneActive = true; }
         return;
     }
     if (currentState === STATE.TRANSITION) { transitionTimer--; if (transitionTimer <= 0) { currentState = STATE.BATTLE; setTimeout(() => { playMusic('BATTLE'); }, 100); } return; }
@@ -1303,6 +1450,9 @@ function update() {
 function drawMapScreen() {
     ctx.fillStyle = activeRoom.color || COLORS.floor;
     if (activeRoom.name === "ASTRO TURF") ctx.fillStyle = COLORS.astroFloor;
+    else if (activeRoom.name === "PASTORAL OFFICE") ctx.fillStyle = COLORS.pastoralFloor;
+    else if (activeRoom.name === "DT BLOCK") ctx.fillStyle = COLORS.dtFloor;
+    else if (activeRoom.name === "RS BLOCK") ctx.fillStyle = COLORS.rsFloor;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
     for (let y = 0; y < ROWS; y++) {
@@ -1371,8 +1521,33 @@ function drawMapScreen() {
         drawSprite(ctx, activeBoss.spriteKey, activeBoss.gridX * TILE_SIZE, activeBoss.gridY * TILE_SIZE, 50, false); 
     }
     drawSprite(ctx, player.spriteKey, player.x, player.y, TILE_SIZE, player.facingRight, player.isMoving ? player.bobFrame : 0);
+    
+    // UI Overlay
+    // HP
     ctx.fillStyle = '#fff'; ctx.textAlign = 'left'; ctx.font = '12px "Press Start 2P"';
     ctx.fillText(`HP: ${player.hp}`, 10, 20); 
+
+    // Bug Keys Tracker - Updated to Pastoral, DT, C3
+    const pastKey = MAP_LAYOUTS['PASTORAL_OFFICE'].minions.every(m => !m.active);
+    const dtKey = MAP_LAYOUTS['DT_BLOCK'].minions.every(m => !m.active);
+    const c3Key = MAP_LAYOUTS['CLASSROOM_3'].minions.every(m => !m.active);
+
+    ctx.font = '10px "Press Start 2P"';
+    ctx.fillStyle = '#ccc';
+    ctx.fillText("KEYS:", 10, 40);
+
+    const drawKey = (x, done, label) => {
+        ctx.fillStyle = done ? '#44ff44' : '#444'; // Green if done, dark grey if not
+        ctx.fillRect(x, 28, 20, 14);
+        ctx.strokeStyle = done ? '#fff' : '#666';
+        ctx.strokeRect(x, 28, 20, 14);
+        ctx.fillStyle = done ? '#000' : '#aaa';
+        ctx.fillText(label, x + 5, 39);
+    };
+
+    drawKey(65, pastKey, "A");
+    drawKey(90, dtKey, "B");
+    drawKey(115, c3Key, "C");
 }
 function drawBattle() {
     ctx.save();
